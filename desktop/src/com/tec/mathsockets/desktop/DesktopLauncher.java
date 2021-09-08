@@ -13,6 +13,8 @@ public class DesktopLauncher {
 		config.useGL30 = false;
 		config.width = 800;
 		config.height = 600;
+		config.forceExit = false;
+		config.foregroundFPS = 144;
 
 		Application app = new LwjglApplication(new MathSockets(), config);
 		Gdx.app = app;

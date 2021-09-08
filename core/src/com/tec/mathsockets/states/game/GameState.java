@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -30,6 +31,7 @@ public class GameState implements Screen {
     private OrthogonalTiledMapRenderer mapRenderer = null;
     private OrthographicCamera camera = null;
     private static Board board;
+    private Texture background;
 
     private static Entity player;
 
@@ -39,6 +41,7 @@ public class GameState implements Screen {
      */
     public GameState() {
         board = new Board();
+        background = new Texture("");
     }
 
 
