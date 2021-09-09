@@ -1,3 +1,4 @@
+![logo](docs/logo.png) 
 # MathSockets
 - [MathSockets Class Diagram.pdf](docs/MathSockets Class Diagram.pdf)
 - Doc [link](https://www.overleaf.com/9279542132rnkkgsrbsxyq) to OverLeaf
