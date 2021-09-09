@@ -8,6 +8,10 @@
 ![MathSockets Class Diagram.png](docs/UML/MathSockets_Class_Diagram.png)
 
 ---
+## Workflow of the Game (State Machine)
+![MathSockets StateMachine.png](docs/UML/MathSocketsStateWorkflow.png)
+
+---
 ## Pending
 - Client-Server connection
 - Game Board
