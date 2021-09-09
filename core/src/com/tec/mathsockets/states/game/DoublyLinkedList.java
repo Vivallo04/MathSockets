@@ -28,6 +28,7 @@ public class DoublyLinkedList {
 
         if (head == null) {
             System.out.println("The list is empty");
+            return;
         }
         while (head != null) {
             System.out.println(current.getTile());

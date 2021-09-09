@@ -11,8 +11,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "MathSockets";
 		config.useGL30 = false;
-		config.width = 800;
-		config.height = 600;
+		config.width = 1280;
+		config.height = 720;
 		config.forceExit = false;
 		config.foregroundFPS = 144;
 

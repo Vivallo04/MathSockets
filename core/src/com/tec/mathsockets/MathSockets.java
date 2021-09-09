@@ -9,27 +9,20 @@ import com.tec.mathsockets.states.game.GameState;
 
 public class MathSockets extends Game {
 
-	public GameState game;
-	SpriteBatch batch;
-	Texture img;
-	
+	private final String TAG = MathSockets.class.getSimpleName();
+	public static GameState gameState;
+	public SpriteBatch batch;
+
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		gameState = new GameState(this);
+		setScreen(gameState);
 	}
 
 	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
 	public void dispose () {
-		batch.dispose();
-		img.dispose();
+		gameState.dispose();
 	}
 }

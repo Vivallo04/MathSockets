@@ -7,11 +7,15 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
+import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.util.Utility;
 
-public class GameState implements Screen {
+public class GameState extends State {
 
     private static final String TAG = GameState.class.getSimpleName();
 
@@ -30,18 +34,32 @@ public class GameState implements Screen {
 
     private OrthogonalTiledMapRenderer mapRenderer = null;
     private OrthographicCamera camera = null;
+    private MathSockets game;
     private static Board board;
-    private Texture background;
 
+
+    private Texture background;
+    private int backgroundX = 0;
+    private int backgroundY = 0;
+
+
+    private final String defaultBackgroundPath = "backgrounds/background1.png";
     private static Entity player;
+
 
 
     /**
      * Constructor
      */
-    public GameState() {
+    public GameState(MathSockets game) {
+        this.game = game;
+        // load textures
+        Utility.loadTextureAsset(defaultBackgroundPath);
+        Gdx.app.debug(TAG, "Background loaded");
+
+        background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board();
-        background = new Texture("");
+
     }
 
 
@@ -69,6 +87,22 @@ public class GameState implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        game.batch.begin();
+
+        game.batch.draw(background, backgroundX, backgroundY, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
+                Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        int backgroundVelocity = 1;
+        backgroundX -= backgroundVelocity;
+
+        if ((backgroundX  + Gdx.graphics.getWidth()) == 0) {
+            backgroundX = 0;
+        }
+
+        board.render();
+        game.batch.end();
+
     }
 
 
@@ -82,17 +116,24 @@ public class GameState implements Screen {
 
     }
 
+
     /**
+     *  Pause the game
      */
     @Override
     public void pause() {
 
     }
 
+
+    /**
+     * Go back to the previous state when paused
+     */
     @Override
     public void resume() {
 
     }
+
 
     /**
      * Called when this screen is no longer the current screen for a {@link Game}.
@@ -102,11 +143,12 @@ public class GameState implements Screen {
 
     }
 
+
     /**
      * Called when this screen should release all resources.
      */
     @Override
     public void dispose() {
-
+        //Utility.unloadAsset(defaultBackgroundPath);
     }
 }
