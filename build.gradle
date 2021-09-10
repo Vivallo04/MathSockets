@@ -48,7 +48,7 @@ project(":desktop") {
         api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
         api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-        
+        compile group: 'com.esotericsoftware', name: 'kryo', version: '3.0.3'
     }
 }
 
@@ -61,5 +61,7 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         testCompile "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+        compile "com.esotericsoftware:kryonet:2.22.0-RC1"
+        compile group: 'com.esotericsoftware', name: 'kryo', version: '3.0.3'
     }
 }

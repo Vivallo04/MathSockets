@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Tile {
 
-    enum TileType {
+    protected enum TileType {
         START_TILE,
         CHALLENGE_TILE,
         TRAP_TILE,

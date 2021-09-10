@@ -1,4 +1,4 @@
 package com.tec.mathsockets.states.game.tiles;
 
-public class WinTile {
+public class WinTile extends Tile {
 }
