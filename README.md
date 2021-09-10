@@ -1,6 +1,6 @@
 ![logo](docs/logo.png) 
-# MathSockets
-- ![MathSockets Class Diagram.pdf](docs/MathSockets Class Diagram.pdf)
+# MathSockets 
+[![Gradle Package](https://github.com/Vivallo04/MathSockets/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/Vivallo04/MathSockets/actions/workflows/gradle-publish.yml)
 - Doc [link](https://www.overleaf.com/9279542132rnkkgsrbsxyq) to OverLeaf
 - Repo [link](https://github.com/Vivallo04/MathSockets) to GitHub
 - Class Diagram [link](https://lucid.app/lucidchart/invitations/accept/inv_ecb42170-a261-42f3-b955-15b89e92216e?viewport_loc=-1707%2C-1590%2C5913%2C3003%2C0_0) to LucidChart
