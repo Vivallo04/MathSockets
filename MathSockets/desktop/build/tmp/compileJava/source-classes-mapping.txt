@@ -1,0 +1,2 @@
+com/tec/mathsockets/desktop/DesktopLauncher.java
+ com.tec.mathsockets.desktop.DesktopLauncher
