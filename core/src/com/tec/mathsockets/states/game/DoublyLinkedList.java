@@ -15,11 +15,12 @@ public class DoublyLinkedList {
             head = newTile;
             tail = head;
             head.previous = null;
-        } else {
-            tail.next = newTile;
-            newTile.previous = tail;
-            tail = newTile;
+            return;
         }
+        tail.next = newTile;
+        newTile.previous = tail;
+        tail = newTile;
+
         tail.next = null;
     }
 
@@ -35,5 +36,8 @@ public class DoublyLinkedList {
         }
     }
 
+    public static void main(String[] args) {
+
+    }
 
 }
