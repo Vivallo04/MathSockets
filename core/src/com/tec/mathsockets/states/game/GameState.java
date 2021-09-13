@@ -18,6 +18,7 @@ import com.tec.mathsockets.util.Utility;
 public class GameState extends State {
 
     private static final String TAG = GameState.class.getSimpleName();
+    private MathSockets game;
 
     private static class VIEWPORT {
         static float viewportWidth;
@@ -32,20 +33,17 @@ public class GameState extends State {
     private TextureRegion currentPlayerFrame;
     private Sprite currentPlayerSprite;
 
-    private OrthogonalTiledMapRenderer mapRenderer = null;
+    private final OrthogonalTiledMapRenderer mapRenderer = null;
     private OrthographicCamera camera = null;
-    private MathSockets game;
+
     private static Board board;
 
-
-    private Texture background;
+    private final Texture background;
     private int backgroundX = 0;
-    private int backgroundY = 0;
 
 
     private final String defaultBackgroundPath = "backgrounds/background1.png";
     private static Entity player;
-
 
 
     /**
@@ -53,13 +51,12 @@ public class GameState extends State {
      */
     public GameState(MathSockets game) {
         this.game = game;
+
         // load textures
         Utility.loadTextureAsset(defaultBackgroundPath);
-        Gdx.app.debug(TAG, "Background loaded");
-
         background = Utility.getTextureAsset(defaultBackgroundPath);
-        board = new Board();
 
+        board = new Board(Board.BOARD_SIZE.BIG);
     }
 
 
@@ -74,8 +71,6 @@ public class GameState extends State {
         // get the current size
         camera = new OrthographicCamera();
         camera.setToOrtho(false, VIEWPORT.viewportWidth, VIEWPORT.viewportHeight);
-
-
     }
 
     /**
@@ -89,20 +84,19 @@ public class GameState extends State {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
 
+        int backgroundY = 0;
         game.batch.draw(background, backgroundX, backgroundY, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
-                Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        //game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        int backgroundVelocity = 1;
-        backgroundX -= backgroundVelocity;
+        //nt backgroundVelocity = 1;
+        //backgroundX -= backgroundVelocity;
 
-        if ((backgroundX  + Gdx.graphics.getWidth()) == 0) {
-            backgroundX = 0;
-        }
+        //if ((backgroundX  + Gdx.graphics.getWidth()) == 0)
+           // backgroundX = 0;
 
-        board.render();
+
+        board.render(game.batch);
         game.batch.end();
-
     }
 
 

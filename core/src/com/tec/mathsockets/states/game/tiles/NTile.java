@@ -13,6 +13,7 @@ public class NTile {
         pos++;
     }
 
+
     public Tile getTile() {
         return this.tile;
     }

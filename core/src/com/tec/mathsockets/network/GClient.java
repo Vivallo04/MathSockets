@@ -1,38 +1,34 @@
 package com.tec.mathsockets.network;
 
-import com.badlogic.gdx.utils.Json;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.tec.mathsockets.util.EventHandler;
 
 import java.io.IOException;
 
 
-
 public class GClient {
 
+    private Client client;
+
+    private final String TAG = GClient.class.getSimpleName();
+
     public GClient() throws IOException {
-
         init();
-    }
-
-    private void init() throws IOException {
-        Json json = new Json();
-        String mensaje;
-        mensaje = "{\n" +
-                "Clients: [\n" +
-                "\t{\n" +
-                "\t\tConnecting clients: \"5\",\n" +
-                "\t\tClients connected successfully: \"1\",\n" +
-                "}";
-        String cadenaCliente = json.toJson(mensaje);
-
-
-        Client client = new Client();
         Kryo kryo = client.getKryo();
         kryo.register(GServer.someResponse.class);
         kryo.register(GServer.someRequest.class);
+    }
+
+    private void init() throws IOException {
+        String message;
+        message = "";
+
+        String clientString = EventHandler.json.toJson(message);
+
+        client = new Client();
 
         client.start();
         client.connect(5000, "localhost", 54555, 54777);
@@ -48,7 +44,11 @@ public class GClient {
                 }
             }
         });
-        }
     }
+
+    public Client getClient() {
+        return this.client;
+    }
+}
 
 

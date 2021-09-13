@@ -1,37 +1,42 @@
 package com.tec.mathsockets.network;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.tec.mathsockets.util.EventHandler;
+
 import java.io.IOException;
 
 
 public class GServer {
+
+    public final String TAG = GServer.class.getSimpleName();
+    private static Server server = new Server();
+    private String serverResponse;
+
+
+    // TODO: populate game board
+
 
     public GServer() throws IOException {
         init();
     }
 
     private void init() throws IOException {
-        final Json json = new Json();
-        final String respuesta_servidor;
-        respuesta_servidor = "{\n" +
-                "Clients: [\n" +
-                "\t{\n" +
-                "\t\tConnecting clients: \"5\",\n" +
-                "\t\tClients connected successfully: \"1\",\n" +
-                "}";
-
-        Server server = new Server();
         server.start();
+
+        Gdx.app.debug(TAG, "The server has been started correctly");
+
+        serverResponse = "";
+
+        // Initialize the server on port 54555 (TCP) and 54777 (UDP)
         server.bind(54555, 54777);
-        Kryo kryo = server.getKryo();
-        kryo.register(someRequest.class);
-        kryo.register(someResponse.class);
 
         server.addListener(new Listener() {
-            public void received (com.esotericsoftware.kryonet.Connection connection, Object object) {
+            public void received (Connection connection, Object object) {
                 if (object instanceof someRequest) {
                     someRequest request = (someRequest)object; // Recibe el mensaje del cliente
                     System.out.println(request.write());
@@ -41,24 +46,21 @@ public class GServer {
                 }
             }
         });
-
     }
 
+    public static Server getServer() {
+        return server;
+    }
 
     public static class someRequest {
-
         public String write() {
-            Json json = new Json();
-            String mensaje;
-            mensaje = "{\n" +
-                    "Clients: [\n" +
-                    "\t{\n" +
-                    "\t\tConnecting clients: \"5\",\n" +
-                    "\t\tClients connected successfully: \"1\",\n" +
-                    "}";
-            String cadenaCliente = json.toJson(mensaje);
-            return cadenaCliente;
+            String message;
+            message = "";
 
+            String clientString = EventHandler.json.toJson(message);
+
+            EventHandler.files.writeString(clientString, true);
+            return clientString;
         }
 
         public void read() {
@@ -70,21 +72,21 @@ public class GServer {
 
         public String write() {
             Json json = new Json();
-            String recibido;
-            recibido = "{\n" +
+            String received;
+            received = "{\n" +
                     "Server: [\n" +
                     "\t{\n" +
                     "\t\tNew Client connected" +
                     "}";
-            String cadenaServidor = json.toJson(recibido);
-            return cadenaServidor;
-
+            String serverString = json.toJson(received);
+            return serverString;
         }
 
         public void read() {
 
         }
     }
+
 }
 
 
