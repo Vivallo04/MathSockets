@@ -1,0 +1,7 @@
+{
+  "Player": {
+    "name" : "Lua",
+    "age": 12,
+    "isAlive": true
+  }
+}
