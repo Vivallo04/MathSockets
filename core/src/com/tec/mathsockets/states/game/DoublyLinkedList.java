@@ -67,10 +67,11 @@ public class DoublyLinkedList {
         }
     }
 
-    public void renderBoard(SpriteBatch batch, int totalTiles) {
+    public void renderBoard(int totalTiles) {
         NTile last = null;
         int xPos = 50;
         int yPos = 50;
+
 
         while (head != null) {
             if ((head.getTile().getTileCount() % totalTiles == 0) && totalTiles != 0) {

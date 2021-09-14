@@ -9,14 +9,15 @@ import java.util.Random;
 public class Board {
 
     public static String TAG = Board.class.getSimpleName();
-    public static enum BOARD_SIZE {
+    private Random random = new Random();
+
+    public enum BOARD_SIZE {
         SMALL,
         MEDIUM,
         BIG
     }
 
     public DoublyLinkedList boardTiles;
-    private Random random = new Random();
     private int totalTiles;
 
 
@@ -33,25 +34,25 @@ public class Board {
     }
 
 
-
-
     public void populateBoard() {
         int tileCount = 0;
 
         int randomNumber = random.nextInt(10 - 1) + 1;
         System.out.println(randomNumber);
 
-        for (int i = 0; i < 32; i++) {
+        while(tileCount < totalTiles) {
             boardTiles.append(new StartTile());
+            tileCount++;
         }
-
         boardTiles.printList();
     }
 
-    public void render(SpriteBatch batch) {
+
+    public void render() {
         populateBoard();
-        boardTiles.renderBoard(batch, this.totalTiles);
+        boardTiles.renderBoard(this.totalTiles);
     }
+
 
     public void dispose() {
 
