@@ -94,7 +94,6 @@ public class GameState extends State {
 
         if ((backgroundX  + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
-
         board.render(game.batch);
         game.batch.end();
     }
