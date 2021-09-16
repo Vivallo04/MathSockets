@@ -6,8 +6,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tec.mathsockets.states.game.tiles.StartTile;
 import com.tec.mathsockets.states.game.tiles.Tile;
+import sun.awt.image.ImageWatched;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Board {
@@ -15,18 +17,20 @@ public class Board {
     public static String TAG = Board.class.getSimpleName();
     private Random random = new Random();
 
+    public int offsetY = 5;
+
     public enum BoardSize {
         SMALL,
         MEDIUM,
         BIG
     }
 
-    public ArrayList<Tile> boardNodes;
+    public LinkedList<Tile> boardNodes;
     private int totalTiles;
 
 
     public Board(BoardSize boardSize) {
-        boardNodes = new ArrayList<Tile>();
+        boardNodes = new LinkedList<Tile>();
         if (boardSize.equals(BoardSize.SMALL)) {
             totalTiles = 16;
         } else if (boardSize.equals(BoardSize.MEDIUM)) {
@@ -52,20 +56,25 @@ public class Board {
     public void render(SpriteBatch batch) {
         int tileWidth = 64;
         int tileHeigth = 64;
-        int tileCount = 0;
-        int x = 0;
-        int y = 700;
+        int currentNode = 0;
+        int i = 1; // x  pos
+        int j = 2;
         for (Tile tile: boardNodes) {
-            if (tileCount % totalTiles == 0 && tileCount != 0) {
-                batch.draw(tile.getTileTexture(), x, y, tileWidth, tileHeigth);
-                y -= tileHeigth;
+            // in-line
+            if (boardNodes.size() % i == 0 && i != 1) {
+                batch.draw(boardNodes.element().getTileTexture(), (i * tileWidth), Gdx.graphics.getHeight() - (j * tileHeigth), tileWidth, tileHeigth);
+                currentNode++;
+                j++;
+                i = 1;
             } else {
-                batch.draw(tile.getTileTexture(), x, y, tileWidth, tileHeigth);
-                x += tileWidth;
+                batch.draw(boardNodes.element().getTileTexture(), (i * tileWidth), Gdx.graphics.getHeight() - (j * tileHeigth), tileWidth, tileHeigth);
+                currentNode++;
+                i++;
             }
-
         }
+
     }
+
 
     public void dispose() {
         boardNodes.removeAll(boardNodes);

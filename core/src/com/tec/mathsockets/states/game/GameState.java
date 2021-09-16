@@ -8,14 +8,12 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
 import com.tec.mathsockets.states.State;
-import com.tec.mathsockets.states.game.tiles.Tile;
 import com.tec.mathsockets.util.Utility;
 
-import java.util.ArrayList;
+
 
 public class GameState extends State {
 
@@ -57,7 +55,7 @@ public class GameState extends State {
         // load textures
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
-        board = new Board(Board.BoardSize.SMALL);
+        board = new Board(Board.BoardSize.MEDIUM);
     }
 
 
@@ -86,14 +84,15 @@ public class GameState extends State {
         game.batch.begin();
 
         int backgroundY = 0;
-        game.batch.draw(background, backgroundX, backgroundY, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        //game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(background, backgroundX, backgroundY,
+                Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
+                Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-        //nt backgroundVelocity = 1;
-        //backgroundX -= backgroundVelocity;
+        int backgroundVelocity = 1;
+        backgroundX -= backgroundVelocity;
 
-        //if ((backgroundX  + Gdx.graphics.getWidth()) == 0)
-           // backgroundX = 0;
+        if ((backgroundX  + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
 
         board.render(game.batch);

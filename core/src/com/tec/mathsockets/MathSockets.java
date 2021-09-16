@@ -17,13 +17,13 @@ public class MathSockets extends Game {
 	public static GameState gameState;
 	public SpriteBatch batch;
 
-	private Kryo kryo;
+	Kryo kryo;
 	GServer gameServer;
 	GClient gameClient;
 
 
 	public MathSockets() {
-		Kryo kryo = GServer.getServer().getKryo();
+		kryo = GServer.getServer().getKryo();
 		kryo.register(GServer.someRequest.class);
 		kryo.register(GServer.someResponse.class);
 	}
