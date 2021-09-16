@@ -55,7 +55,7 @@ public class GServer {
     public static class someRequest {
         public String write() {
             String message;
-            message = "";
+            message = "Hello";
 
             String clientString = EventHandler.json.toJson(message);
 
@@ -73,11 +73,7 @@ public class GServer {
         public String write() {
             Json json = new Json();
             String received;
-            received = "{\n" +
-                    "Server: [\n" +
-                    "\t{\n" +
-                    "\t\tNew Client connected" +
-                    "}";
+            received = "Hello2";
             String serverString = json.toJson(received);
             return serverString;
         }

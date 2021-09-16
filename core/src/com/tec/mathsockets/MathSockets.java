@@ -17,6 +17,7 @@ public class MathSockets extends Game {
 	public static GameState gameState;
 	public SpriteBatch batch;
 
+	private Kryo kryo;
 	GServer gameServer;
 	GClient gameClient;
 
@@ -46,6 +47,7 @@ public class MathSockets extends Game {
 
 	@Override
 	public void dispose () {
+		//terminate server and clients
 		gameState.dispose();
 	}
 }

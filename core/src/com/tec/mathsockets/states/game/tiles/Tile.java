@@ -12,8 +12,9 @@ public abstract class Tile {
         WIN_TILE
     }
 
-    protected TileType tileType;
     protected Texture tileTexture;
+    protected TileType tileType;
+    protected final String tileTexturePath = null;
 
     protected int xPos;
     protected int yPos;
@@ -44,6 +45,8 @@ public abstract class Tile {
 
     }
 
+
+    //Getters & Setters --------------------------------------------------------
     public int getxPos() {
         return xPos;
     }

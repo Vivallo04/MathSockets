@@ -2,23 +2,25 @@ package com.tec.mathsockets.states.game;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.states.game.tiles.Tile;
 import com.tec.mathsockets.util.Utility;
+
+import java.util.ArrayList;
 
 public class GameState extends State {
 
     private static final String TAG = GameState.class.getSimpleName();
-    private MathSockets game;
+    private final MathSockets game;
 
     private static class VIEWPORT {
         static float viewportWidth;
@@ -49,14 +51,13 @@ public class GameState extends State {
     /**
      * Constructor
      */
-    public GameState(MathSockets game) {
+    public GameState(final MathSockets game) {
         this.game = game;
 
         // load textures
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
-
-        board = new Board(Board.BOARD_SIZE.BIG);
+        board = new Board(Board.BoardSize.SMALL);
     }
 
 
@@ -80,7 +81,6 @@ public class GameState extends State {
      */
     @Override
     public void render(float delta) {
-        super.render(delta);
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
@@ -96,7 +96,7 @@ public class GameState extends State {
            // backgroundX = 0;
 
 
-        board.render();
+        board.render(game.batch);
         game.batch.end();
     }
 
@@ -144,6 +144,8 @@ public class GameState extends State {
      */
     @Override
     public void dispose() {
-        //Utility.unloadAsset(defaultBackgroundPath);
+        Utility.unloadAsset(defaultBackgroundPath);
+        board.dispose();
+
     }
 }
