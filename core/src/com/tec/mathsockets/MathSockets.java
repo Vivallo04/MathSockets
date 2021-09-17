@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class MathSockets extends Game {
 
+	// TODO: DOCUMENTATION
 	private final String TAG = MathSockets.class.getSimpleName();
 	public static GameState gameState;
 	public SpriteBatch batch;

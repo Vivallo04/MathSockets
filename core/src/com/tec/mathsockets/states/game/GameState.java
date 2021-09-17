@@ -14,9 +14,15 @@ import com.tec.mathsockets.states.State;
 import com.tec.mathsockets.util.Utility;
 
 
-
 public class GameState extends State {
 
+    // TODO: POPULATE BOARD WITH DIFFERENT TILES
+    //       ADD PLAYERS TO GAME
+    //       ADD VECTORS TO TILES
+    //       PARSE JSON FILES
+    //       ADD PLAYER'S INFO
+    //       ADD CHALLENGE STATE TO GAME STATE
+    //       IMPLEMENT SPRITESHEET WITH ANIMATIONS
     private static final String TAG = GameState.class.getSimpleName();
     private final MathSockets game;
 
@@ -56,6 +62,7 @@ public class GameState extends State {
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
+
     }
 
 
@@ -72,6 +79,7 @@ public class GameState extends State {
         camera.setToOrtho(false, VIEWPORT.viewportWidth, VIEWPORT.viewportHeight);
     }
 
+
     /**
      * Called when the screen should render itself.
      *
@@ -81,6 +89,7 @@ public class GameState extends State {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         game.batch.begin();
 
         int backgroundY = 0;
@@ -144,6 +153,6 @@ public class GameState extends State {
     public void dispose() {
         Utility.unloadAsset(defaultBackgroundPath);
         board.dispose();
-
     }
+
 }

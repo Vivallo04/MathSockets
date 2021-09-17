@@ -54,11 +54,11 @@ public class Board {
 
 
     public void render(SpriteBatch batch) {
-        int tileWidth = 64;
-        int tileHeigth = 64;
+        int tileWidth = 128;
+        int tileHeigth = 128;
         int currentNode = 0;
         int i = 1; // x  pos
-        int j = 2;
+        int j = 1;
         for (Tile tile: boardNodes) {
             // in-line
             if (boardNodes.size() % i == 0 && i != 1) {

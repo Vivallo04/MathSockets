@@ -1,13 +1,11 @@
 package com.tec.mathsockets.states.challenge;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
 
 public class ChallengeState extends State {
 
-    private MathSockets game;
+    private final MathSockets game;
 
     public ChallengeState(MathSockets game) {
         this.game = game;
@@ -17,6 +15,7 @@ public class ChallengeState extends State {
     public void create() {
 
     }
+
 
     @Override
     public void render(float delta) {

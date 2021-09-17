@@ -17,10 +17,6 @@ public class GServer {
     private static Server server = new Server();
     private String serverResponse;
 
-
-    // TODO: populate game board
-
-
     public GServer() throws IOException {
         init();
     }

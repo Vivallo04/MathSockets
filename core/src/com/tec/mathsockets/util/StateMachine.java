@@ -42,7 +42,7 @@ public class StateMachine {
             case AboutState:
                 return MathSockets.gameState;
             default:
-                return MathSockets.gameState;
+                throw new IllegalStateException("No state has been selected");
         }
     }
 

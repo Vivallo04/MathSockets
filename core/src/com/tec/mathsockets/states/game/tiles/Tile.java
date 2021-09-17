@@ -1,6 +1,7 @@
 package com.tec.mathsockets.states.game.tiles;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Vector2;
 
 public abstract class Tile {
 
@@ -12,9 +13,11 @@ public abstract class Tile {
         WIN_TILE
     }
 
+
+    protected final String tileTexturePath = null;
     protected Texture tileTexture;
     protected TileType tileType;
-    protected final String tileTexturePath = null;
+    protected Vector2 centerPos;
 
     protected int xPos;
     protected int yPos;
@@ -43,6 +46,10 @@ public abstract class Tile {
 
     public void action() {
 
+    }
+
+    public void setCenterPos(int x, int y) {
+        centerPos = new Vector2(x, y);
     }
 
 

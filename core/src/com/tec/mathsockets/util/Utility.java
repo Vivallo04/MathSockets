@@ -101,7 +101,7 @@ public final class Utility {
     public static Texture getTextureAsset(String textureFilename) {
         Texture texture = null;
 
-        // Once the asset manage is done loading
+        // Once the asset manager is done loading
         if (assetManager.isLoaded(textureFilename)) {
             texture = assetManager.get(textureFilename, Texture.class);
         } else {

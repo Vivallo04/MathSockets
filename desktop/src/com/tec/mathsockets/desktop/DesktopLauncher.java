@@ -16,7 +16,6 @@ public class DesktopLauncher {
 		config.forceExit = false;
 		config.foregroundFPS = 144;
 		config.resizable = true;
-		//config.fullscreen = true;
 
 		Application app = new LwjglApplication(new MathSockets(), config);
 		Gdx.app = app;
