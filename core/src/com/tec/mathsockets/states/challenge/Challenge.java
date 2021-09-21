@@ -15,7 +15,6 @@ public class Challenge {
     }
 
     Scanner playerResult = new Scanner(System.in);
-    static String problem;
 
 
     int userInput;
@@ -131,7 +130,7 @@ public class Challenge {
 
 
     public static void main(String[] args) {
-        Challenge challenge = new Challenge();
+        new Challenge();
 
     }
 

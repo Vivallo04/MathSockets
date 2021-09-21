@@ -8,7 +8,6 @@ import com.tec.mathsockets.states.State;
 
 import java.awt.*;
 
-import static com.tec.mathsockets.states.challenge.Challenge.problem;
 
 public class ChallengeState extends State {
 
@@ -49,7 +48,7 @@ public class ChallengeState extends State {
         rectangle.begin(ShapeRenderer.ShapeType.Filled);
         rectangle.rect(x, y,1200, 602 );
         batch.begin();
-            font.draw(batch, problem, 550, 500);
+        //font.draw(batch, problem, 550, 500);
             //font.draw(batch, "Número 1: "+ numeros.getNum1(), 500, 530);
             //font.draw(batch, "Número 2: "+ numeros.getNum2(), 550, 530);
         batch.end();

@@ -21,7 +21,6 @@ public class GameState extends State {
     //       ADD VECTORS TO TILES
     //       PARSE JSON FILES
     //       ADD PLAYER'S INFO
-    //       ADD CHALLENGE STATE TO GAME STATE
     //       IMPLEMENT SPRITESHEET WITH ANIMATIONS
     private static final String TAG = GameState.class.getSimpleName();
     private final MathSockets game;
