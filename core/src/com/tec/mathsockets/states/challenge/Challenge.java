@@ -5,22 +5,22 @@ import java.util.Scanner;
 
 public class Challenge {
 
+    private final String TAG = Challenge.class.getSimpleName();
+
     public enum Operation {
-        SUMA,
-        RESTA,
-        MULTIPLICACION,
+        ADDITION,
+        SUBTRACTION,
+        MULTIPLICATION,
         DIVISION
     }
 
-    Scanner resultadoJugador = new Scanner(System.in);
+    Scanner playerResult = new Scanner(System.in);
     static String problem;
 
+
     int userInput;
-    private Operation challengeType;
-    private int num0;
     private int num1;
     private int num2;
-    //private int operacion = (int) (Math.random() * 4 + 1);
     private int result;
 
     public Challenge() {
@@ -36,28 +36,12 @@ public class Challenge {
      */
     public void setNum1(int num1) {
         if (num1 < num2) {
-            this.num0 = num1;
             this.num1 = num2;
-            this.num2 = num0;
+            this.num2 = num1;
             return;
         }
         this.num1 = num1;
-        this.num2 = num2;
     }
-
-    /*
-    public void getOperador() {
-        if (operacion == 1) {
-            problem = "¡Suma los dos números!";
-        } else if (operacion == 2) {
-            problem = "Resta los dos números";
-        } else if (operacion == 3) {
-            problem = "Multiplica los dos números";
-        } else {
-            problem = "Divide los dos números";
-        }
-        return;
-    }*/
 
 
     /**
@@ -92,11 +76,11 @@ public class Challenge {
      * @return
      */
     public void askForChallenge() {
-        if (getRandomOperation().equals(Operation.SUMA)) {
+        if (getRandomOperation().equals(Operation.ADDITION)) {
             System.out.println("La operación es suma de: " + num1 + " + " + num2);
             result = num1 + num2;
             System.out.println(TAG + " Suma resultado: " + result);
-            userInput = resultadoJugador.nextInt();
+            userInput = playerResult.nextInt();
 
             if (userInput == result) {
                 System.out.println("Correcto!");
@@ -104,22 +88,22 @@ public class Challenge {
             }
             System.out.println("Oops");
 
-        } else if (getRandomOperation().equals(Operation.RESTA)) {
+        } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
             System.out.println("La operación es resta de: " + num1 + " - " + num2);
             result = num1 - num2;
             System.out.println(TAG + " resta resultado: " + result);
-            userInput = resultadoJugador.nextInt();
+            userInput = playerResult.nextInt();
             if (userInput == result) {
                 System.out.println("Correcto!");
                 return;
             }
             System.out.println("Oops");
 
-        } else if (getRandomOperation().equals(Operation.MULTIPLICACION)) {
+        } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
             System.out.println("La operación es multiplicación de: " + num1 + " * " + num2);
             result = num1 * num2;
             System.out.println(TAG + " multiplicación resultado: " + result);
-            userInput = resultadoJugador.nextInt();
+            userInput = playerResult.nextInt();
             if (userInput == result) {
                 System.out.println("Correcto!");
                 return;
@@ -131,7 +115,7 @@ public class Challenge {
             setNum1(num1);
             result = num1 / num2;
             System.out.println(TAG + " división resultado: " + result);
-            userInput = resultadoJugador.nextInt();
+            userInput = playerResult.nextInt();
             if (userInput == result) {
                 System.out.println("Correcto!");
                 return;
