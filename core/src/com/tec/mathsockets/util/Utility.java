@@ -5,9 +5,10 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 
 public final class Utility {
@@ -15,6 +16,12 @@ public final class Utility {
     private static final String TAG = Utility.class.getSimpleName();
     private static final AssetManager assetManager = new AssetManager();
     private static final InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
+
+    private static final String UI_SKIN_PATH = "skins/ui_skin.json";
+    private static final String UI_TEXTURE_ATLAS_PATH = "atlases/UI_ATLAS.atlas";
+
+    public static TextureAtlas UI_TEXTURE_ATLAS = new TextureAtlas(UI_TEXTURE_ATLAS_PATH);
+    public static final Skin UI_SKIN = new Skin(Gdx.files.internal(UI_SKIN_PATH), UI_TEXTURE_ATLAS);
 
 
     /**

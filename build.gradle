@@ -60,7 +60,11 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        implementation 'com.badlogicgames.gdx:gdx-tools:1.10.0'
         compile "com.esotericsoftware:kryonet:2.22.0-RC1"
         compile group: 'com.esotericsoftware', name: 'kryo', version: '3.0.3'
     }
+}
+
+dependencies {
 }

@@ -15,12 +15,13 @@ public class LoadingState extends State {
     private final MathSockets game;
 
     private float timeSeconds = 0f;
-    private float period = 30f;
+    private float period = 3f;
 
     private final String logoPath = "logo.png";
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Texture logo;
     private Rectangle rectangle;
+
 
     // TODO: FADE (CHANGE OPACITY)
     //       CHANGE STATE
@@ -42,8 +43,10 @@ public class LoadingState extends State {
         super.render(delta);
         Gdx.gl.glClearColor(255, 255, 255, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
         Gdx.gl.glEnable(GL20.GL_ARRAY_BUFFER_BINDING);
+
+        int logoWidth = logo.getWidth();
+        int logoHeight = logo.getHeight();
 
         timeSeconds += Gdx.graphics.getDeltaTime();
         if (timeSeconds > period) {
@@ -51,26 +54,21 @@ public class LoadingState extends State {
             System.out.println(":)");
         }
 
-        int logoWidth = logo.getWidth();
-        int logoHeight = logo.getHeight();
-
 
         game.getBatch().enableBlending();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.rect(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
-        shapeRenderer.setColor(new Color((0 + timeSeconds) / 5, (0 + timeSeconds) / 5, (0 + timeSeconds) / 5, 1));
+        shapeRenderer.setColor(new Color((0 + timeSeconds) / 2, (0 + timeSeconds) / 2, (0 + timeSeconds) / 2, 1));
         shapeRenderer.end();
 
 
         game.getBatch().begin();
-        game.getBatch().draw(logo, (Gdx.graphics.getWidth() - logoWidth) / 2,
-                (Gdx.graphics.getHeight() - logoHeight)/2);
+        game.getBatch().draw(logo, (Gdx.graphics.getWidth() - logoWidth) /2,
+                (Gdx.graphics.getHeight() - logoHeight) /2);
 
 
         Gdx.gl.glDisable(GL20.GL_BLEND);
         game.batch.end();
-
-
     }
 
     @Override

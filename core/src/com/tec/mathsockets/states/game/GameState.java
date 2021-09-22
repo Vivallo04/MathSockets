@@ -22,6 +22,7 @@ public class GameState extends State {
     //       PARSE JSON FILES
     //       ADD PLAYER'S INFO
     //       IMPLEMENT SPRITESHEET WITH ANIMATIONS
+
     private static final String TAG = GameState.class.getSimpleName();
     private final MathSockets game;
 
@@ -61,7 +62,6 @@ public class GameState extends State {
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
-
     }
 
 
@@ -89,12 +89,12 @@ public class GameState extends State {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        game.batch.begin();
+        game.getBatch().begin();
 
         int backgroundY = 0;
-        game.batch.draw(background, backgroundX, backgroundY,
+        game.getBatch().draw(background, backgroundX, backgroundY,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
+        game.getBatch().draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
         int backgroundVelocity = 1;
@@ -102,8 +102,8 @@ public class GameState extends State {
 
         if ((backgroundX  + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
-        board.render(game.batch);
-        game.batch.end();
+        board.render(game.getBatch());
+        game.getBatch().end();
     }
 
 
