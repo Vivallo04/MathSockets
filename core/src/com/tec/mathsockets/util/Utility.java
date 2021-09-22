@@ -17,11 +17,11 @@ public final class Utility {
     private static final AssetManager assetManager = new AssetManager();
     private static final InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
-    private static final String UI_SKIN_PATH = "skins/ui_skin.json";
+    //private static final String UI_SKIN_PATH = "skins/ui_skin.json";
     private static final String UI_TEXTURE_ATLAS_PATH = "atlases/UI_ATLAS.atlas";
 
     public static TextureAtlas UI_TEXTURE_ATLAS = new TextureAtlas(UI_TEXTURE_ATLAS_PATH);
-    public static final Skin UI_SKIN = new Skin(Gdx.files.internal(UI_SKIN_PATH), UI_TEXTURE_ATLAS);
+    //public static final Skin UI_SKIN = new Skin(Gdx.files.internal(UI_SKIN_PATH), UI_TEXTURE_ATLAS);
 
 
     /**

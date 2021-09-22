@@ -80,8 +80,5 @@ public class ChallengeState extends State {
 
     }
 
-    public static void main(String[] args) {
-        new Challenge();
-    }
 
 }

@@ -17,7 +17,7 @@ public class LoadingState extends State {
     private float timeSeconds = 0f;
     private float period = 3f;
 
-    private final String logoPath = "logo.png";
+    private final String logoPath = "design/logo.png";
     private final ShapeRenderer shapeRenderer = new ShapeRenderer();
     private Texture logo;
     private Rectangle rectangle;

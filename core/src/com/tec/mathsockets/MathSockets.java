@@ -41,8 +41,7 @@ public class MathSockets extends Game {
 		loadingState = new LoadingState(this);
 		challengeState = new ChallengeState(this);
 
-		setScreen(challengeState);
-		//setScreen(loadingState);
+		setScreen(loadingState);
 
 		try {
 			gameServer = new GServer();
