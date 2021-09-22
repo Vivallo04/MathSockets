@@ -1,5 +1,6 @@
 package com.tec.mathsockets.states.challenge;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -8,28 +9,27 @@ import com.tec.mathsockets.states.State;
 
 import java.awt.*;
 
-
 public class ChallengeState extends State {
 
     private final MathSockets game;
-    //Challenge numeros = new Challenge();
-    ShapeRenderer rectangle;
+    ShapeRenderer shapeRenderer;
     public SpriteBatch batch;
     private BitmapFont font;
     private TextField text;
-    int x = 200;
-    int y = 200;
+
 
     public ChallengeState(MathSockets game) {
         this.game = game;
+        create();
 
     }
 
     public void create() {
 
-        rectangle = new ShapeRenderer();
+        shapeRenderer = new ShapeRenderer();
         font = new BitmapFont();
-        //TextButton verifButton = new TextButton("Verficar resultado");
+        batch = new SpriteBatch();
+        //TextButton verifButton = new TextButton("Hola");
         //verification.setPosition(x, x);
         //verification.setSize(x, x);
 
@@ -43,21 +43,25 @@ public class ChallengeState extends State {
     public void render(float delta) { //Aquí se crea la nueva ventana y se le agregan los datos
         super.render(delta); //Heredo el método render de State
 
+        int offset = 60;
+
         //Crear el rectángulo con la pregunta y el campo para ingresar los datos
         //después verifica si el resultado es el correcto y procede con el juego
-        rectangle.begin(ShapeRenderer.ShapeType.Filled);
-        rectangle.rect(x, y,1200, 602 );
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.rect(offset / 2, offset / 2, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
+        shapeRenderer.end();
         batch.begin();
-        //font.draw(batch, problem, 550, 500);
+            //font.draw(batch, problem, 550, 500);
             //font.draw(batch, "Número 1: "+ numeros.getNum1(), 500, 530);
             //font.draw(batch, "Número 2: "+ numeros.getNum2(), 550, 530);
         batch.end();
+        //Agregarlo en la ventana, sobre el rectángulo.
         //Agregar aquí el TextField y comprobar con el métdodo Challenge
         //add verifButton
         //add text, obtener el dato (creo que pasarlo a int) y comprarlo con el método Challenge de la clase Challenge
 
 
-        rectangle.end();
+
 
 
 
@@ -66,7 +70,12 @@ public class ChallengeState extends State {
 
     @Override
     public void dispose() { // Una manera de manejar memoria
+
         super.dispose();
+    }
+
+    public static void main(String[] args) {
+        new Challenge();
     }
 
 }

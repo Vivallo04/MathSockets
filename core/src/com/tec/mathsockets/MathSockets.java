@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.kryo.Kryo;
 import com.tec.mathsockets.network.GClient;
 import com.tec.mathsockets.network.GServer;
+import com.tec.mathsockets.states.challenge.ChallengeState;
 import com.tec.mathsockets.states.game.GameState;
 import com.tec.mathsockets.states.load.LoadingState;
 
@@ -19,6 +20,7 @@ public class MathSockets extends Game {
 	public static GameState gameState;
 	public static LoadingState loadingState;
 	public SpriteBatch batch;
+	public static ChallengeState challengeState;
 
 	Kryo kryo;
 	GServer gameServer;
@@ -37,8 +39,10 @@ public class MathSockets extends Game {
 		batch = new SpriteBatch();
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
+		challengeState = new ChallengeState(this);
 
-		setScreen(loadingState);
+		setScreen(challengeState);
+		//setScreen(loadingState);
 
 		try {
 			gameServer = new GServer();

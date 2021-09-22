@@ -7,6 +7,7 @@ public class Challenge {
 
     private final String TAG = Challenge.class.getSimpleName();
 
+
     public enum Operation {
         ADDITION,
         SUBTRACTION,
@@ -21,6 +22,7 @@ public class Challenge {
     private int num1;
     private int num2;
     private int result;
+    private String problema;
 
     public Challenge() {
         this.num1 = (int) (Math.random() * 50 + 1);
@@ -76,7 +78,8 @@ public class Challenge {
      */
     public void askForChallenge() {
         if (getRandomOperation().equals(Operation.ADDITION)) {
-            System.out.println("La operación es suma de: " + num1 + " + " + num2);
+            problema = num1 + " + " + num2;
+            System.out.println("La operación es suma de: " + problema);
             result = num1 + num2;
             System.out.println(TAG + " Suma resultado: " + result);
             userInput = playerResult.nextInt();
@@ -88,7 +91,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
-            System.out.println("La operación es resta de: " + num1 + " - " + num2);
+            problema = num1 + " - " + num2;
+            System.out.println("La operación es resta de: " + problema);
             result = num1 - num2;
             System.out.println(TAG + " resta resultado: " + result);
             userInput = playerResult.nextInt();
@@ -99,7 +103,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
-            System.out.println("La operación es multiplicación de: " + num1 + " * " + num2);
+            problema = num1 + " * " + num2;
+            System.out.println("La operación es multiplicación de: " + problema);
             result = num1 * num2;
             System.out.println(TAG + " multiplicación resultado: " + result);
             userInput = playerResult.nextInt();
@@ -110,7 +115,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else {
-            System.out.println("La operación es división de: " + num1 + " / " + num2);
+            problema = num1 + " / " + num2;
+            System.out.println("La operación es división de: " + problema);
             setNum1(num1);
             result = num1 / num2;
             System.out.println(TAG + " división resultado: " + result);
