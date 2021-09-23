@@ -2,7 +2,7 @@ package com.tec.mathsockets.util;
 
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 
-public class TheTexturePacker {
+public final class TheTexturePacker {
 
     public static void generateTextureAtlas(String input, String output, String atlasName) {
         TexturePacker.process(input, output, atlasName);

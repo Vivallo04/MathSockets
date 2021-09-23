@@ -34,6 +34,8 @@ public class ChallengeState extends State {
         font = new BitmapFont();
         batch = new SpriteBatch();
         stage = new Stage();
+
+
         //TextButton verifButton = new TextButton("Hola");
         //verification.setPosition(x, x);
         //verification.setSize(x, x);
@@ -57,10 +59,11 @@ public class ChallengeState extends State {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.rect(offset / 2, offset / 2, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
         shapeRenderer.end();
+
         batch.begin();
-            //font.draw(batch, problem, 550, 500);
-            //font.draw(batch, "Número 1: "+ numeros.getNum1(), 500, 530);
-            //font.draw(batch, "Número 2: "+ numeros.getNum2(), 550, 530);
+        //font.draw(batch, problem, 550, 500);
+        //font.draw(batch, "Número 1: "+ numeros.getNum1(), 500, 530);
+        //font.draw(batch, "Número 2: "+ numeros.getNum2(), 550, 530);
         batch.end();
         //Agregarlo en la ventana, sobre el rectángulo.
         //Agregar aquí el TextField y comprobar con el métdodo Challenge

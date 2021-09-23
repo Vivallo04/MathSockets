@@ -4,17 +4,20 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.tec.mathsockets.util.EventHandler;
 
 import java.io.IOException;
 
 
 public class GClient {
 
+    private final String TAG = GClient.class.getSimpleName();
     private Client client;
 
-    private final String TAG = GClient.class.getSimpleName();
 
+    /**
+     * Initialize the Client and bind to the available Server
+     * @throws IOException
+     */
     public GClient() throws IOException {
         init();
         Kryo kryo = client.getKryo();
@@ -22,14 +25,17 @@ public class GClient {
         kryo.register(GServer.someRequest.class);
     }
 
+
+    /**
+     * Initialize the client and bind to localhost and connect
+     * @throws IOException Unable to connect to server
+     */
     private void init() throws IOException {
         String message;
-        message = "";
-
-        String clientString = EventHandler.json.toJson(message);
+        message = "Client message ";
+        String clientString = EventManager.json.toJson(message);
 
         client = new Client();
-
         client.start();
         client.connect(5000, "localhost", 54555, 54777);
 
@@ -46,8 +52,21 @@ public class GClient {
         });
     }
 
+    /**
+     * Get client instance
+      * @return client instance
+     */
     public Client getClient() {
         return this.client;
+    }
+
+
+    /**
+     * Disconnect the client from the server and
+     * eliminate its instance
+     */
+    public void dispose() {
+        client.stop();
     }
 }
 

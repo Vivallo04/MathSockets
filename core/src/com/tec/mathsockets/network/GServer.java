@@ -2,11 +2,9 @@ package com.tec.mathsockets.network;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Json;
-import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
-import com.tec.mathsockets.util.EventHandler;
 
 import java.io.IOException;
 
@@ -14,27 +12,50 @@ import java.io.IOException;
 public class GServer {
 
     public final String TAG = GServer.class.getSimpleName();
-    private static Server server = new Server();
+    private static Server server;
     private String serverResponse;
 
+
+    /**
+     * Initialize the server
+     * @throws IOException Unable to bind to ports
+     */
     public GServer() throws IOException {
         init();
     }
 
+
+    /**
+     * Singleton || Get a unique instance of the server
+     * @return Server instance
+     */
+    public static Server getServerInstance() {
+        if (server == null) {
+            server = new Server();
+        }
+        return server;
+    }
+
+
+    /**
+     * Initialize the server on ports TCP: 54555, UDP: 54777
+     * and stay open to new requests
+     * @throws IOException Unable to initialize Server
+     */
     private void init() throws IOException {
+        getServerInstance();
         server.start();
 
         Gdx.app.debug(TAG, "The server has been started correctly");
 
-        serverResponse = "";
+        serverResponse = " ";
 
-        // Initialize the server on port 54555 (TCP) and 54777 (UDP)
         server.bind(54555, 54777);
 
         server.addListener(new Listener() {
             public void received (Connection connection, Object object) {
                 if (object instanceof someRequest) {
-                    someRequest request = (someRequest)object; // Recibe el mensaje del cliente
+                    someRequest request = (someRequest)object; // Listen to client responses
                     System.out.println(request.write());
 
                     someResponse response = new someResponse();
@@ -44,18 +65,24 @@ public class GServer {
         });
     }
 
-    public static Server getServer() {
-        return server;
+
+    /**
+     * Stop the server from receiving requests and sending responses
+     */
+    public void dispose() {
+        server.stop();
     }
+
+
 
     public static class someRequest {
         public String write() {
             String message;
             message = "Hello";
 
-            String clientString = EventHandler.json.toJson(message);
+            String clientString = EventManager.json.toJson(message);
 
-            EventHandler.files.writeString(clientString, true);
+            EventManager.files.writeString(clientString, true);
             return clientString;
         }
 
@@ -64,8 +91,8 @@ public class GServer {
         }
     }
 
-    public static class someResponse{
 
+    public static class someResponse{
         public String write() {
             Json json = new Json();
             String received;
@@ -78,6 +105,7 @@ public class GServer {
 
         }
     }
+
 
 }
 

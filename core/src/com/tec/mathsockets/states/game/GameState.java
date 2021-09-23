@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.tec.mathsockets.MathSockets;
@@ -23,7 +24,10 @@ public class GameState extends State {
     //       ADD PLAYER'S INFO
     //       IMPLEMENT SPRITESHEET WITH ANIMATIONS
 
+
+    private final String defaultBackgroundPath = "backgrounds/background1.png";
     private static final String TAG = GameState.class.getSimpleName();
+
     private final MathSockets game;
 
     private static class VIEWPORT {
@@ -47,8 +51,6 @@ public class GameState extends State {
     private final Texture background;
     private int backgroundX = 0;
 
-
-    private final String defaultBackgroundPath = "backgrounds/background1.png";
     private static Entity player;
 
 
@@ -58,7 +60,7 @@ public class GameState extends State {
     public GameState(final MathSockets game) {
         this.game = game;
 
-        // load textures
+        // Load textures
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
@@ -71,7 +73,7 @@ public class GameState extends State {
     @Override
     public void show() {
         // camera setup
-        setupViewport(10, 10);
+        setupViewport(20, 20);
 
         // get the current size
         camera = new OrthographicCamera();
@@ -91,16 +93,17 @@ public class GameState extends State {
 
         game.getBatch().begin();
 
-        int backgroundY = 0;
-        game.getBatch().draw(background, backgroundX, backgroundY,
+        game.getBatch().draw(background, backgroundX, 0,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.getBatch().draw(background, backgroundX + Gdx.graphics.getWidth(), backgroundY,
+        game.getBatch().draw(background, backgroundX + Gdx.graphics.getWidth(), 0,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
+
+        // Scrolling Background
         int backgroundVelocity = 1;
         backgroundX -= backgroundVelocity;
+        if ((backgroundX + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
-        if ((backgroundX  + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
         board.render(game.getBatch());
         game.getBatch().end();
@@ -111,6 +114,10 @@ public class GameState extends State {
 
     }
 
+
+    public SpriteBatch getGameStateBatch() {
+        return this.game.getBatch();
+    }
 
     @Override
     public void resize(int width, int height) {
