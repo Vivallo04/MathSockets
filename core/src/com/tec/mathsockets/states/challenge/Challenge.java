@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Challenge {
 
+
     private final String TAG = Challenge.class.getSimpleName();
 
 
@@ -21,8 +22,8 @@ public class Challenge {
     int userInput;
     private int num1;
     private int num2;
-    private int result;
-    private String problema;
+    private static int result;
+    private static String problem;
 
     public Challenge() {
         this.num1 = (int) (Math.random() * 50 + 1);
@@ -78,8 +79,8 @@ public class Challenge {
      */
     public void askForChallenge() {
         if (getRandomOperation().equals(Operation.ADDITION)) {
-            problema = num1 + " + " + num2;
-            System.out.println("La operación es suma de: " + problema);
+            problem = num1 + " + " + num2;
+            //System.out.println("La operación es suma de: " + problema);
             result = num1 + num2;
             System.out.println(TAG + " Suma resultado: " + result);
             userInput = playerResult.nextInt();
@@ -91,8 +92,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
-            problema = num1 + " - " + num2;
-            System.out.println("La operación es resta de: " + problema);
+            problem = num1 + " - " + num2;
+            System.out.println("La operación es resta de: " + problem);
             result = num1 - num2;
             System.out.println(TAG + " resta resultado: " + result);
             userInput = playerResult.nextInt();
@@ -103,8 +104,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
-            problema = num1 + " * " + num2;
-            System.out.println("La operación es multiplicación de: " + problema);
+            problem = num1 + " * " + num2;
+            System.out.println("La operación es multiplicación de: " + problem);
             result = num1 * num2;
             System.out.println(TAG + " multiplicación resultado: " + result);
             userInput = playerResult.nextInt();
@@ -115,8 +116,8 @@ public class Challenge {
             System.out.println("Oops");
 
         } else {
-            problema = num1 + " / " + num2;
-            System.out.println("La operación es división de: " + problema);
+            problem = num1 + " / " + num2;
+            System.out.println("La operación es división de: " + problem);
             setNum1(num1);
             result = num1 / num2;
             System.out.println(TAG + " división resultado: " + result);
@@ -130,7 +131,11 @@ public class Challenge {
         }
     }
 
-    public int getResult() {
+    public static String getProblem(){
+        return problem;
+    }
+
+    public static int getResult() {
         return result;
     }
 
