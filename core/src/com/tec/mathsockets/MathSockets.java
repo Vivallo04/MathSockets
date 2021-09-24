@@ -35,11 +35,19 @@ public class MathSockets extends Game {
 	protected GClient gameClient;
 
 
+
 	public MathSockets() {
 		kryo = GServer.getServerInstance().getKryo();
 		kryo.register(GServer.someRequest.class);
 		kryo.register(GServer.someResponse.class);
 	}
+
+	/*public challenge(){
+		ChallengeState x = new ChallengeState(this);
+		return;
+
+	}*/
+
 
 
 	@Override
@@ -78,6 +86,10 @@ public class MathSockets extends Game {
 		gameState.dispose();
 		gameClient.dispose();
 		gameServer.dispose();
+	}
+
+	public static void main(String[] args) {
+		MathSockets uno = new MathSockets();
 	}
 
 }
