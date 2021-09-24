@@ -11,16 +11,3 @@
 ---
 ## Workflow of the Game (State Machine)
 ![MathSockets StateMachine.png](docs/UML/MathSocketsStateWorkflow.png)
-
----
-## Pending
-- Client-Server connection
-- Game Board
-- Main UI
-- Main Menu
-- Documentation
-- Game Challenges
-- JUnit tests
-- Find Entity Sprites
-- Player connection
-- Parse JSON files

@@ -1,6 +1,4 @@
 buildscript {
-    
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -8,9 +6,22 @@ buildscript {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         google()
     }
-    dependencies {
-        
+}
 
+plugins {
+    id 'maven-publish'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/Vivallo04/MathSockets"
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
 }
 
@@ -27,6 +38,7 @@ allprojects {
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
     }
+
 
     repositories {
         mavenLocal()
@@ -64,7 +76,4 @@ project(":core") {
         compile "com.esotericsoftware:kryonet:2.22.0-RC1"
         compile group: 'com.esotericsoftware', name: 'kryo', version: '3.0.3'
     }
-}
-
-dependencies {
 }
