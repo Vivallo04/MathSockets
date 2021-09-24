@@ -5,8 +5,8 @@ import com.tec.mathsockets.util.Utility;
 
 public class StartTile extends Tile {
 
-    public StartTile() {
-        super();
+    public StartTile(int width, int height) {
+        super(width, height);
         String tileTexturePath = "board/TunnelTile.png";
         Utility.loadTextureAsset(tileTexturePath);
         tileTexture = Utility.getTextureAsset(tileTexturePath);

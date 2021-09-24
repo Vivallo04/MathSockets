@@ -6,43 +6,43 @@ import com.tec.mathsockets.states.State;
 public class StateMachine {
 
     public enum StateType {
-        ConnectState,
-        ChooseAvatarState,
-        SelectPortState,
-        MainMenuState,
-        GameState,
-        WinState,
-        PauseState,
-        SettingsState,
-        HowToPlayState,
-        AboutState
+        ABOUT_STATE,
+        CHOOSE_AVATAR_STATE,
+        CONNECT_STATE,
+        GAME_STATE,
+        HOW_TO_PLAY_STATE,
+        MAIN_MENU_STATE,
+        PAUSE_STATE,
+        SELECT_PORT_STATE,
+        SETTINGS_STATE,
+        WIN_STATE
     }
 
 
-    public State changeState(StateType state) {
-        switch (state) {
-            case ConnectState:
+    public State switchState(StateType newState) {
+        switch (newState) {
+            case CONNECT_STATE:
                 return MathSockets.gameState;
-            case ChooseAvatarState:
+            case CHOOSE_AVATAR_STATE:
                 return MathSockets.gameState;
-            case SelectPortState:
+            case SELECT_PORT_STATE:
                 return MathSockets.gameState;
-            case MainMenuState:
+            case MAIN_MENU_STATE:
                 return MathSockets.gameState;
-            case GameState:
+            case GAME_STATE:
                 return MathSockets.gameState;
-            case WinState:
+            case WIN_STATE:
                 return MathSockets.gameState;
-            case PauseState:
+            case PAUSE_STATE:
                 return MathSockets.gameState;
-            case SettingsState:
+            case SETTINGS_STATE:
                 return MathSockets.gameState;
-            case HowToPlayState:
+            case HOW_TO_PLAY_STATE:
                 return MathSockets.gameState;
-            case AboutState:
+            case ABOUT_STATE:
                 return MathSockets.gameState;
             default:
-                throw new IllegalStateException("No state has been selected");
+                throw new IllegalStateException("No newState has been selected");
         }
     }
 

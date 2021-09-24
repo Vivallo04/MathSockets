@@ -38,15 +38,15 @@ public class Board {
         } else {
             totalTiles = 36;
         }
-        populateBoard();
+        populateBoard(128, 128);
     }
 
 
-    public void populateBoard() {
+    public void populateBoard(int tileWidth, int tileHeight) {
         int tileCount = 0;
 
         while(tileCount < totalTiles) {
-            boardNodes.add(new StartTile());
+            boardNodes.add(new StartTile(tileWidth, tileHeight));
             tileCount++;
         }
         Gdx.app.debug(TAG, "Board has been populated");
@@ -54,20 +54,20 @@ public class Board {
 
 
     public void render(SpriteBatch batch) {
-        int tileWidth = 128;
-        int tileHeigth = 128;
         int currentNode = 0;
-        int i = 1; // x  pos
-        int j = 1;
+        int i = 1; // x pos
+        int j = 1; // y pos
         for (Tile tile: boardNodes) {
             // in-line
             if (boardNodes.size() % i == 0 && i != 1) {
-                batch.draw(boardNodes.element().getTileTexture(), (i * tileWidth), Gdx.graphics.getHeight() - (j * tileHeigth), tileWidth, tileHeigth);
+                batch.draw(tile.getTileTexture(), (i * tile.getWidth()) - 80,
+                        (Gdx.graphics.getHeight() - (j * tile.getHeight())) - tile.getHeight() / 2, tile.getWidth(), tile.getHeight());
                 currentNode++;
                 j++;
                 i = 1;
             } else {
-                batch.draw(boardNodes.element().getTileTexture(), (i * tileWidth), Gdx.graphics.getHeight() - (j * tileHeigth), tileWidth, tileHeigth);
+                batch.draw(tile.getTileTexture(), (i * tile.getHeight()) - 80,
+                        (Gdx.graphics.getHeight() - (j * tile.getHeight())) - tile.getHeight() / 2, tile.getWidth(), tile.getHeight());
                 currentNode++;
                 i++;
             }
@@ -79,5 +79,6 @@ public class Board {
     public void dispose() {
         boardNodes.removeAll(boardNodes);
     }
+
 
 }

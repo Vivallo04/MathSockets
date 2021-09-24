@@ -28,7 +28,9 @@ public abstract class Tile {
     protected int tileCount;
 
 
-    public Tile() {
+    public Tile(int width, int height) {
+        this.width = width;
+        this.height = height;
         tileCount++;
     }
 
