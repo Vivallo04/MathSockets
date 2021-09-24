@@ -17,7 +17,10 @@ import java.io.IOException;
 
 public class MathSockets extends Game {
 
-
+	//TODO: URGENTE => TERMINAR DE IMPLEMENTAR JAVADOC Y COMPILAR
+	//      OBSERVER => REQUEST
+	//      STATE MACHINE
+	//      ABSTRACT FACTORY
 	private final String TAG = MathSockets.class.getSimpleName();
 	private SpriteBatch batch;
 
@@ -45,10 +48,10 @@ public class MathSockets extends Game {
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		challengeState = new ChallengeState(this);
-		setScreen(gameState);
+		setScreen(loadingState);
 
 		try {
-			gameServer = new GServer();
+			gameServer = GServer.getGServerInstance();
 			gameClient = new GClient();
 
 		} catch (IOException e) {

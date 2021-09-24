@@ -13,6 +13,7 @@ public class GServer {
 
     public final String TAG = GServer.class.getSimpleName();
     private static Server server;
+    private static GServer gameSever;
     private String serverResponse;
 
 
@@ -20,10 +21,16 @@ public class GServer {
      * Initialize the server
      * @throws IOException Unable to bind to ports
      */
-    public GServer() throws IOException {
+    private GServer() throws IOException {
         init();
     }
 
+    public static GServer getGServerInstance() throws IOException {
+        if (gameSever == null) {
+            gameSever = new GServer();
+        }
+        return gameSever;
+    }
 
     /**
      * Singleton || Get a unique instance of the server
@@ -44,15 +51,15 @@ public class GServer {
      */
     private void init() throws IOException {
         getServerInstance();
-        server.start();
+        getServerInstance().start();
 
         Gdx.app.debug(TAG, "The server has been started correctly");
 
         serverResponse = " ";
 
-        server.bind(54555, 54777);
+        getServerInstance().bind(54555, 54777);
 
-        server.addListener(new Listener() {
+        getServerInstance().addListener(new Listener() {
             public void received (Connection connection, Object object) {
                 if (object instanceof someRequest) {
                     someRequest request = (someRequest)object; // Listen to client responses
@@ -70,7 +77,7 @@ public class GServer {
      * Stop the server from receiving requests and sending responses
      */
     public void dispose() {
-        server.stop();
+        getServerInstance().stop();
     }
 
 
