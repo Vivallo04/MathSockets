@@ -42,20 +42,12 @@ public class MathSockets extends Game {
 		kryo.register(GServer.someResponse.class);
 	}
 
-	/*public challenge(){
-		ChallengeState x = new ChallengeState(this);
-		return;
-
-	}*/
-
-
-
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
-		challengeState = new ChallengeState(this);
+		//challengeState = new ChallengeState(this);
 		setScreen(loadingState);
 
 		try {
@@ -86,10 +78,6 @@ public class MathSockets extends Game {
 		gameState.dispose();
 		gameClient.dispose();
 		gameServer.dispose();
-	}
-
-	public static void main(String[] args) {
-		MathSockets uno = new MathSockets();
 	}
 
 }
