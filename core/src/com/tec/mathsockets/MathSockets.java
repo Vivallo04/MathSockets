@@ -34,13 +34,16 @@ public class MathSockets extends Game {
 	protected GServer gameServer;
 	protected GClient gameClient;
 
-
-
+	/**
+	 * Initialize Kryo Server and stay open
+	 * for request and responses
+	 */
 	public MathSockets() {
 		kryo = GServer.getServerInstance().getKryo();
 		kryo.register(GServer.someRequest.class);
 		kryo.register(GServer.someResponse.class);
 	}
+
 
 	@Override
 	public void create () {
@@ -48,7 +51,7 @@ public class MathSockets extends Game {
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		//challengeState = new ChallengeState(this);
-		setScreen(loadingState);
+		setScreen(gameState);
 
 		try {
 			gameServer = GServer.getGServerInstance();

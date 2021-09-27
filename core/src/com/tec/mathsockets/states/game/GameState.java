@@ -18,6 +18,7 @@ import com.tec.mathsockets.util.Utility;
 public class GameState extends State {
 
     // TODO: POPULATE BOARD WITH DIFFERENT TILES
+    //       ADD SPRITES & ANIMATIONS
     //       ADD PLAYERS TO GAME
     //       ADD VECTORS TO TILES
     //       PARSE JSON FILES
@@ -55,7 +56,8 @@ public class GameState extends State {
 
 
     /**
-     * Constructor
+     * Load textures and initialize the game Board
+     * @author Andrés Vivallo
      */
     public GameState(final MathSockets game) {
         this.game = game;

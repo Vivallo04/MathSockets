@@ -76,6 +76,7 @@ public class Board {
     }
 
 
+    /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
         boardNodes.removeAll(boardNodes);
     }
