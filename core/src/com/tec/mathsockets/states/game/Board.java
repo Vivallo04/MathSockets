@@ -1,14 +1,10 @@
 package com.tec.mathsockets.states.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tec.mathsockets.states.game.tiles.StartTile;
 import com.tec.mathsockets.states.game.tiles.Tile;
-import sun.awt.image.ImageWatched;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -38,15 +34,15 @@ public class Board {
         } else {
             totalTiles = 36;
         }
-        populateBoard(128, 128);
+        populateBoard();
     }
 
 
-    public void populateBoard(int tileWidth, int tileHeight) {
+    public void populateBoard() {
         int tileCount = 0;
 
         while(tileCount < totalTiles) {
-            boardNodes.add(new StartTile(tileWidth, tileHeight));
+            boardNodes.add(new StartTile());
             tileCount++;
         }
         Gdx.app.debug(TAG, "Board has been populated");
@@ -58,17 +54,23 @@ public class Board {
         int i = 1; // x pos
         int j = 1; // y pos
         for (Tile tile: boardNodes) {
+
+            int x = i * tile.getWIDTH();
+            int y = j * tile.getHEIGHT();
+
             // in-line
             if (boardNodes.size() % i == 0 && i != 1) {
-                batch.draw(tile.getTileTexture(), (i * tile.getWidth()) - 80,
-                        (Gdx.graphics.getHeight() - (j * tile.getHeight())) - tile.getHeight() / 2, tile.getWidth(), tile.getHeight());
+                batch.draw(tile.getTileTexture(), x - 80,
+                        (Gdx.graphics.getHeight() - y) - tile.getHEIGHT() / 2, tile.getWIDTH(), tile.getHEIGHT());
                 currentNode++;
+                tile.addCenterNode(x / 2, y / 2);
                 j++;
                 i = 1;
             } else {
-                batch.draw(tile.getTileTexture(), (i * tile.getHeight()) - 80,
-                        (Gdx.graphics.getHeight() - (j * tile.getHeight())) - tile.getHeight() / 2, tile.getWidth(), tile.getHeight());
+                batch.draw(tile.getTileTexture(), x - 80,
+                        (Gdx.graphics.getHeight() - y) - tile.getHEIGHT() / 2, tile.getWIDTH(), tile.getHEIGHT());
                 currentNode++;
+                tile.addCenterNode(x / 2, y / 2);
                 i++;
             }
         }

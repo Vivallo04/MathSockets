@@ -2,6 +2,7 @@ package com.tec.mathsockets.states.game.tiles;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.tec.mathsockets.util.Utility;
 
 public abstract class Tile {
 
@@ -13,25 +14,28 @@ public abstract class Tile {
         WIN_TILE
     }
 
-
-    protected final String tileTexturePath = null;
+    protected String tileTexturePath;
     protected Texture tileTexture;
     protected TileType tileType;
-    protected Vector2 centerPos;
+    protected Vector2 centerNode;
 
     protected int xPos;
     protected int yPos;
 
-    protected int width;
-    protected int height;
+    protected final int WIDTH = 128;
+    protected final int HEIGHT = 128;
 
     protected int tileCount;
 
-
-    public Tile(int width, int height) {
-        this.width = width;
-        this.height = height;
+    public Tile() {
         tileCount++;
+    }
+
+    protected void init(String tileTexturePath, TileType tileType) {
+        setTileTexturePath(tileTexturePath);
+        Utility.loadTextureAsset(getTileTexturePath());
+        tileTexture = Utility.getTextureAsset(tileTexturePath);
+        this.tileType = tileType;
     }
 
     public int getTileCount() {
@@ -50,10 +54,21 @@ public abstract class Tile {
 
     }
 
-    public void setCenterPos(int x, int y) {
-        centerPos = new Vector2(x, y);
+    public void addCenterNode(int x, int y) {
+        centerNode = new Vector2(x, y);
     }
 
+    public Vector2 getCenterNode() {
+        return centerNode;
+    }
+
+    public void setTileTexturePath(String path) {
+        tileTexturePath = path;
+    }
+
+    public String getTileTexturePath() {
+        return tileTexturePath;
+    }
 
     //Getters & Setters --------------------------------------------------------
     public int getxPos() {
@@ -72,21 +87,14 @@ public abstract class Tile {
         this.yPos = yPos;
     }
 
-    public int getWidth() {
-        return width;
+    public int getWIDTH() {
+        return WIDTH;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public int getHEIGHT() {
+        return HEIGHT;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
 
 
 }

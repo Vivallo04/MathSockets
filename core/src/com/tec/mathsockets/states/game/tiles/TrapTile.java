@@ -1,7 +1,9 @@
 package com.tec.mathsockets.states.game.tiles;
 
 public class TrapTile extends Tile {
-    public TrapTile(int width, int height) {
-        super(width, height);
+
+    public TrapTile() {
+        super();
+        init("tiles/TrapTile.png", TileType.TRAP_TILE);
     }
 }
