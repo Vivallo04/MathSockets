@@ -19,9 +19,6 @@ import java.awt.*;
 
 public class ChallengeState extends State {
 
-    /**
-     * Variables
-     */
     private final MathSockets game;
     private ShapeRenderer shapeRenderer;
     public SpriteBatch batch;
@@ -43,7 +40,7 @@ public class ChallengeState extends State {
     }
 
     /**
-     * Creates different instances
+     * Create different instances
      */
     public void create() {
         shapeRenderer = new ShapeRenderer();
@@ -67,6 +64,7 @@ public class ChallengeState extends State {
 
         int offset = 60;
 
+        
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.rect(offset / 2, offset / 2, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
         shapeRenderer.end();
@@ -77,7 +75,7 @@ public class ChallengeState extends State {
     }
 
     /**
-     * Initialize the button and the TextField
+     * Initialize the button with its function and the TextField
      */
     @Override
     public void show() {
@@ -97,7 +95,7 @@ public class ChallengeState extends State {
         //text.setSize(300, 40);
 
         /**
-         * Button functionality
+         * Button functionality: Comparing the correct result to the one entered by the player
          */
         button.addListener(new ClickListener(){
            @Override

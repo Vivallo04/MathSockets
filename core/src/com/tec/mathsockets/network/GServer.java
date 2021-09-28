@@ -25,6 +25,12 @@ public class GServer {
         init();
     }
 
+
+    /**
+     * Creates a new GServer instance if one is not already created
+     * @return gameState, a GSever instance
+     * @throws IOException
+     */
     public static GServer getGServerInstance() throws IOException {
         if (gameSever == null) {
             gameSever = new GServer();
@@ -81,7 +87,9 @@ public class GServer {
     }
 
 
-
+    /**
+     * Send a message to the client using a json file
+     */
     public static class someRequest {
         public String write() {
             String message;
@@ -98,7 +106,9 @@ public class GServer {
         }
     }
 
-
+    /**
+     * Receive a json file with the client message
+     */
     public static class someResponse{
         public String write() {
             Json json = new Json();

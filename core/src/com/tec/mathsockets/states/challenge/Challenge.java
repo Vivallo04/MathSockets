@@ -8,7 +8,9 @@ public class Challenge {
 
     private final String TAG = Challenge.class.getSimpleName();
 
-
+    /**
+     * Name for every math operation
+     */
     public enum Operation {
         ADDITION,
         SUBTRACTION,
@@ -25,6 +27,10 @@ public class Challenge {
     private static int result;
     private static String problem;
 
+
+    /**
+     * Set a random number between 1-50 and calls askForChallenge
+     */
     public Challenge() {
         this.num1 = (int) (Math.random() * 50 + 1);
         this.num2 = (int) (Math.random() * 50 + 1);
@@ -33,7 +39,7 @@ public class Challenge {
 
 
     /**
-     *
+     * Exchange num1 and num2 values
      * @param num1
      */
     public void setNum1(int num1) {
@@ -48,7 +54,7 @@ public class Challenge {
 
     /**
      * Get num1 value to string
-     * @return
+     * @return num1 str
      */
     public String getNum1(){
         return String.valueOf(num1);
@@ -74,8 +80,8 @@ public class Challenge {
 
 
     /**
-     *
-     * @return
+     * Set the operation in a String variable and do the math problem
+     * @return void
      */
     public void askForChallenge() {
         if (getRandomOperation().equals(Operation.ADDITION)) {
@@ -131,10 +137,18 @@ public class Challenge {
         }
     }
 
+    /**
+     * Get the string variable with the problem to resolve
+     * @return String math problem
+     */
     public static String getProblem(){
         return problem;
     }
 
+    /**
+     * Get the result to compare it in ChallengeState
+     * @return int result
+     */
     public static int getResult() {
         return result;
     }
