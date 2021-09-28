@@ -25,6 +25,7 @@ public abstract class State extends Stage implements Screen {
     @Override
     public void resize(int width, int height) {
 
+
     }
 
     @Override

@@ -1,24 +1,29 @@
 package com.tec.mathsockets.states.load;
 
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.states.game.GameState;
+import com.tec.mathsockets.states.menu.MainMenuState;
 import com.tec.mathsockets.util.Utility;
 
 public class LoadingState extends State {
 
     private final MathSockets game;
 
-    private float timeSeconds = 3f;
+    public static GameState gameState;
+    private float timeSeconds = 0f;
     private float period = 0.003f;
-    private float alpha = 0.1f;
+    private float alpha = 0f;
 
     private final String logoPath = "design/logo.png";
     private final Texture logoAsset;
     private final Sprite displayLogo;
+
 
 
     public LoadingState(MathSockets game) {
@@ -26,6 +31,7 @@ public class LoadingState extends State {
         Utility.loadTextureAsset(logoPath);
         logoAsset = Utility.getTextureAsset(logoPath);
         displayLogo = new Sprite(logoAsset);
+
     }
 
 
@@ -37,14 +43,8 @@ public class LoadingState extends State {
     @Override
     public void render(float delta) {
         super.render(delta);
-        Gdx.gl.glEnable(GL20.GL_ARRAY_BUFFER_BINDING);
 
-        timeSeconds += Gdx.graphics.getDeltaTime();
-        if (timeSeconds > period) {
-            alpha += period;
-            timeSeconds -= period;
-        }
-
+        //Gdx.gl.glEnable(GL20.GL_ARRAY_BUFFER_BINDING);
         game.getBatch().begin();
         displayLogo.draw(game.getBatch());
 
@@ -54,8 +54,23 @@ public class LoadingState extends State {
 
         game.getBatch().end();
         displayLogo.setAlpha(alpha);
-    }
 
+        timeSeconds += Gdx.graphics.getDeltaTime();
+        System.out.println(timeSeconds);
+        if (timeSeconds > period) {
+            alpha += period;
+            timeSeconds -= period;
+
+            if (alpha >= 1) {
+                alpha = 1f;
+                if(timeSeconds >= 7){
+                    System.out.println("tiempo de espera terminó");
+                    game.setScreen(new MainMenuState(game));
+                    dispose();
+                }
+            }
+        }
+    }
 
     @Override
     public void dispose() {

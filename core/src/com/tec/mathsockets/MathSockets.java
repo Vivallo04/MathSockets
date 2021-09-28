@@ -10,6 +10,7 @@ import com.tec.mathsockets.network.GServer;
 import com.tec.mathsockets.states.challenge.ChallengeState;
 import com.tec.mathsockets.states.game.GameState;
 import com.tec.mathsockets.states.load.LoadingState;
+import com.tec.mathsockets.states.menu.MainMenuState;
 import com.tec.mathsockets.util.StateMachine;
 
 import java.io.IOException;
@@ -27,12 +28,15 @@ public class MathSockets extends Game {
 	public static GameState gameState;
 	public static LoadingState loadingState;
 	public static ChallengeState challengeState;
+	private MainMenuState MainMenuState;
 
 	public static StateMachine stateMachine;
 
 	protected Kryo kryo;
 	protected GServer gameServer;
 	protected GClient gameClient;
+
+
 
 	/**
 	 * Initialize Kryo Server and stay open
@@ -50,8 +54,9 @@ public class MathSockets extends Game {
 		batch = new SpriteBatch();
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
+		MainMenuState = new MainMenuState(this);
 		//challengeState = new ChallengeState(this);
-		setScreen(gameState);
+		setScreen(loadingState);
 
 		try {
 			gameServer = GServer.getGServerInstance();

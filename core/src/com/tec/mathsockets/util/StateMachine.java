@@ -18,7 +18,6 @@ public class StateMachine {
         WIN_STATE
     }
 
-
     public State switchState(StateType newState) {
         switch (newState) {
             case CONNECT_STATE:
@@ -45,5 +44,4 @@ public class StateMachine {
                 throw new IllegalStateException("No newState has been selected");
         }
     }
-
 }
