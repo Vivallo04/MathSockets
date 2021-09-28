@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
+import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.states.State;
 import com.tec.mathsockets.util.Utility;
 
@@ -47,6 +48,7 @@ public class GameState extends State {
     private final Texture background;
     private int backgroundX = 0;
 
+    private Player player;
 
 
     /**
@@ -60,6 +62,7 @@ public class GameState extends State {
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
+        player = new Player();
     }
 
 
@@ -100,8 +103,8 @@ public class GameState extends State {
         backgroundX -= backgroundVelocity;
         if ((backgroundX + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
 
-
         board.render(game.getBatch());
+        player.render(game.getBatch(), 50, 50);
         game.getBatch().end();
     }
 

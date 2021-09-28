@@ -21,7 +21,6 @@ public final class Utility {
     private static final InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
 
-
     private static final String UI_SKIN_PATH = "skins/ui_skin.json";
     private static final String UI_TEXTURE_ATLAS_PATH = "atlases/UI_ATLAS.atlas";
 

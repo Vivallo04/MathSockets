@@ -10,9 +10,6 @@ public abstract class Entity {
     protected TextureAtlas textureAtlas;
     protected Sprite sprite;
 
-    protected Animation<TextureRegion> idleAnimation;
-    protected Animation<TextureRegion> movingAnimation;
-
 
     public Entity() {
 

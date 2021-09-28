@@ -3,6 +3,7 @@ package com.tec.mathsockets.util;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import java.io.BufferedReader;
@@ -84,7 +85,7 @@ public class SpriteManager {
         }
 
         // Initialize the Animation with the frame interval and array of frames
-        walkAnimation = new Animation<TextureRegion>(0.025f, walkFrames);
+        walkAnimation = new Animation<TextureRegion>(0.20f, walkFrames);
         // Reset the elpased animation time to 0
         stateTime = 0f;
     }
@@ -107,8 +108,25 @@ public class SpriteManager {
             }
         }
 
-        idleAnimation = new Animation<TextureRegion>(0.025f, idleFrames);
+        idleAnimation = new Animation<TextureRegion>(0.020f, idleFrames);
         stateTime = 0f;
+    }
+
+    private void loadSpritePaths() throws IOException {
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader(spritePaths));
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(":", 2);
+            if (parts.length >= 2) {
+                String key = parts[0];
+                String value = parts[1];
+                spritesPathMap.put(key, value);
+            } else {
+                Gdx.app.debug(TAG, "Ignoring line: " + line);
+            }
+        }
+        reader.close();
     }
 
     private String getSpriteTexture(CharacterType characterType, AnimationState state) {
@@ -127,21 +145,12 @@ public class SpriteManager {
         return spritesPathMap;
     }
 
-    private void loadSpritePaths() throws IOException {
-        String line;
-        BufferedReader reader = new BufferedReader(new FileReader(spritePaths));
+    public float getStateTime() {
+        return stateTime;
+    }
 
-        while ((line = reader.readLine()) != null) {
-            String[] parts = line.split(":", 2);
-            if (parts.length >= 2) {
-                String key = parts[0];
-                String value = parts[1];
-                spritesPathMap.put(key, value);
-            } else {
-                Gdx.app.debug(TAG, "Ignoring line: " + line);
-            }
-        }
-        reader.close();
+    public void addStateTime(float newStateTime) {
+        this.stateTime += newStateTime;
     }
 
     public void setSpriteSheetDimensionsWalking(int rows, int cols) {
