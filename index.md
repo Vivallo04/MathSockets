@@ -2,7 +2,6 @@
 
 This page is the official documentation for the game Math Sockets. It explains the architecture of the program, the algorithms, and data structures used in the game. You'll also find some issues we ran into and the solution we (the team in charge of the development of the game) created for them. 
 
----
 The video game MathSockets was created using the Java programming language and LibGDX as the main framework for rendering and Kryonet creating and handling the socket connection. LibGDX is a free and open-source game-development application framework written in the Java programming language with some C and C++ components for performance dependent code. It allows for the development of desktop and mobile games by using the same code base. 
 
 # What is the game about? 
