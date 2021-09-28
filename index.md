@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+# Welcome to the MathSockets wiki
 
-You can use the [editor on GitHub](https://github.com/Vivallo04/MathSockets/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This page is the official documentation for the game Math Sockets. It explains the architecture of the program, the algorithms, and data structures used in the game. You'll also find some issues we ran into and the solution we (the team in charge of the development of the game) created for them. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+---
+The video game MathSockets was created using the Java programming language and LibGDX as the main framework for rendering and Kryonet creating and handling the socket connection. LibGDX is a free and open-source game-development application framework written in the Java programming language with some C and C++ components for performance dependent code. It allows for the development of desktop and mobile games by using the same code base. 
 
-### Markdown
+# What is the game about? 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+MathSockets is a board game for two online-players. The game consists of a \begin{math}n x n \end{math} board, whereas the size of n is defined by the developers, the size we chose is \begin{math}5 x 5 \end{math}. There are three different types of tiles: 
+- Challenge Tile 
+- Tunnel Tile
+- Trap Tile
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/Vivallo04/MathSockets/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
