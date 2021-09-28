@@ -2,7 +2,7 @@ package com.tec.mathsockets.states.game.tiles;
 
 import com.tec.mathsockets.util.Utility;
 
-public class StartTile extends Tile implements ITileAction {
+public class StartTile extends Tile {
 
 
     public StartTile() {
@@ -16,8 +16,4 @@ public class StartTile extends Tile implements ITileAction {
 
     }
 
-    @Override
-    public void executeAction() {
-
-    }
 }

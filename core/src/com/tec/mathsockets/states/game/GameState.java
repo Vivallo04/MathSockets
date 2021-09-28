@@ -17,13 +17,10 @@ import com.tec.mathsockets.util.Utility;
 
 public class GameState extends State {
 
-    // TODO: POPULATE BOARD WITH DIFFERENT TILES
-    //       ADD SPRITES & ANIMATIONS
+    // TODO: ADD SPRITES & ANIMATIONS || IMPLEMENT SPRITESHEET WITH ANIMATIONS
     //       ADD PLAYERS TO GAME
-    //       ADD VECTORS TO TILES
     //       PARSE JSON FILES
     //       ADD PLAYER'S INFO
-    //       IMPLEMENT SPRITESHEET WITH ANIMATIONS
 
 
     private final String defaultBackgroundPath = "backgrounds/background1.png";
@@ -41,8 +38,6 @@ public class GameState extends State {
         static float aspectRatio;
     }
 
-    private TextureRegion currentPlayerFrame;
-    private Sprite currentPlayerSprite;
 
     private final OrthogonalTiledMapRenderer mapRenderer = null;
     private OrthographicCamera camera = null;
@@ -52,7 +47,6 @@ public class GameState extends State {
     private final Texture background;
     private int backgroundX = 0;
 
-    private static Entity player;
 
 
     /**

@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -19,6 +20,8 @@ public final class Utility {
     private static final AssetManager assetManager = new AssetManager();
     private static final InternalFileHandleResolver filePathResolver = new InternalFileHandleResolver();
 
+
+
     private static final String UI_SKIN_PATH = "skins/ui_skin.json";
     private static final String UI_TEXTURE_ATLAS_PATH = "atlases/UI_ATLAS.atlas";
 
@@ -26,6 +29,7 @@ public final class Utility {
     //public static final Skin UI_SKIN = new Skin(Gdx.files.internal(UI_SKIN_PATH), UI_TEXTURE_ATLAS);
 
     public static final Random random = new Random();
+    public static SpriteManager spriteManager;
 
     /**
      * Check to see whether te asset is loaded,
@@ -122,6 +126,16 @@ public final class Utility {
 
     public static boolean inRange(int num, int lower, int bound) {
         return (num >= lower && num <= bound);
+    }
+
+    public static String getValueFromMap(HashMap<String, String> map, String searchKey) {
+        String value = null;
+        for (String keys: map.keySet()) {
+            if (searchKey.equals(keys)) {
+                value = map.get(keys);
+            }
+        }
+        return value;
     }
 
 }

@@ -2,7 +2,9 @@ package com.tec.mathsockets.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.tec.mathsockets.states.game.GameState;
+import com.tec.mathsockets.util.SpriteManager;
 
 import javax.swing.*;
 
@@ -11,54 +13,20 @@ public class Player extends Entity {
     private final String TAG = Player.class.getSimpleName();
     private final GameState gameState;
 
-    static enum CharacterType {
-        BALLOONEY,
-        BLANKEY,
-        LIL_WIZ,
-        MR_CIRCUIT,
-        ROACH,
-        ROBO_RETRO,
-        SLIME
-    }
-
-    private CharacterType playerCharacterSprite;
     private Sprite playerSprite;
+    private TextureRegion currentPLayerFrame;
+    private boolean onTurn;
 
-    private int FRAME_COLS;
-    private int FRAME_ROWS;
+    private TextureRegion currentPlayerFrame;
+    private Sprite currentPlayerSprite;
 
-    public Player(GameState gameState, CharacterType playerSprite) {
+
+    public Player(GameState gameState) {
         this.gameState = gameState;
-        playerCharacterSprite = playerSprite;
-        setSpriteSheetDimensions(playerSprite);
+
     }
 
-    private void setSpriteSheetDimensions(CharacterType characterType) {
-        switch (characterType) {
-            case BALLOONEY:
-                FRAME_COLS = 1;
-                FRAME_ROWS = 2;
-                break;
-            case BLANKEY:
-                break;
-            case LIL_WIZ:
-                break;
-            case MR_CIRCUIT:
-                break;
-            case ROACH:
-                break;
-            case ROBO_RETRO:
-                break;
-            case SLIME:
-                break;
-            default:
-                try {
-                    throw new IllegalAccessException("Unable to set sprite sheet dimensios");
-                } catch (IllegalAccessException e) {
-                    Gdx.app.debug(TAG, String.valueOf(e));
-                    e.printStackTrace();
-                }
-        }
-    }
+
+
 
 }

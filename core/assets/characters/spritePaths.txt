@@ -1,0 +1,13 @@
+BALLOONEYIDLE:characters/Ballooney/Ballooney.png
+BALLOONEYWALKING:characters/Ballooney/Ballooney.png
+BLANKEYIDLE:characters/Blankey/BlankeyFloating.png
+BLANKEYWALKING:characters/Blankey/BlankeyFloating.png
+LIL_WIZIDLE:characters/LilWiz/Idle.png
+LIL_WIZWALKING:characters/LilWiz/Running.png
+MR_CIRCUITIDLE:characters/MrCircuit/Idle.png
+MR_CIRCUITWALKING:characters/MrCircuit/Running.png
+ROACHIDLE:characters/Roach/Idle.png
+ROACHWALKING:characters/Roach/Running.png
+ROBO_RETROIDLE:characters/RoboRetro/Idle.png
+ROBO_RETROWALKING:characters/RoboRetro/Walking.png
+
