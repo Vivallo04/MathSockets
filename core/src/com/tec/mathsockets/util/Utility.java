@@ -120,4 +120,8 @@ public final class Utility {
         return texture;
     }
 
+    public static boolean inRange(int num, int lower, int bound) {
+        return (num >= lower && num <= bound);
+    }
+
 }

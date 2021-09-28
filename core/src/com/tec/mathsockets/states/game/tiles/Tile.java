@@ -38,6 +38,15 @@ public abstract class Tile {
         this.tileType = tileType;
     }
 
+    public static Tile createTile() {
+        return new Tile() {
+            @Override
+            protected void init(String tileTexturePath, TileType tileType) {
+                super.init(tileTexturePath, tileType);
+            }
+        };
+    }
+
     public int getTileCount() {
         return this.tileCount;
     }

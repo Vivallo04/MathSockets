@@ -1,6 +1,7 @@
 package com.tec.mathsockets.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.tec.mathsockets.states.game.GameState;
 
 import javax.swing.*;
@@ -21,6 +22,7 @@ public class Player extends Entity {
     }
 
     private CharacterType playerCharacterSprite;
+    private Sprite playerSprite;
 
     private int FRAME_COLS;
     private int FRAME_ROWS;

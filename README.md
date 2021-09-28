@@ -11,7 +11,7 @@
 
 ## Building
 
-If you'd rather compile on your own, follow these instructions.
+If you'd rather compile the source code on your own, follow these instructions.
 First, make sure you have [JDK 16](https://adoptopenjdk.net/archive.html?variant=openjdk16&jvmVariant=hotspot) installed. **Other JDK versions will not work.** Open a terminal in the MathSockets directory and run the following commands:
 
 ### Windows
@@ -36,7 +36,7 @@ the terminal returns `Permission denied` or `Command not found` on Mac/Linux, ru
 
 
 
-## Workflow of the Game (State Machine)
+## Math Sockets' State Machine
 ![MathSockets StateMachine.png](docs/UML/MathSocketsStateWorkflow.png)
 
 
