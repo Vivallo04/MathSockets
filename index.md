@@ -8,15 +8,9 @@ The video game MathSockets was created using the Java programming language and L
 # What is the game about? 
 
 MathSockets is a board game for two online-players. The game consists of a n x n board, whereas the size of n is defined by the developers, the size we chose is 5 x 5. There are three different types of tiles: 
-- Challenge Tile 
-- Tunnel Tile
-- Trap Tile
-
-1. Challenge Tile: The players will have to solve simple algebraic mathematical operations about addition, subtraction, multiplication and division two integer operands between 1 and 50. If the other player fails, they will have to move backwards one tile and if it gets the correct result, they will keep the current position. In either/or cases the current player will move forward one tile.
-
-2. Tunnel Tile: The player that reaches such tile moves forward a random number of tiles between 1 and 3.
-
-3. Trap Tile: This tile works in the same way as the Tunnel Tile but instead of moving forward, the players will move backwards.
+- Challenge Tile: The players will have to solve simple algebraic mathematical operations about addition, subtraction, multiplication and division two integer operands between 1 and 50. If the other player fails, they will have to move backwards one tile and if it gets the correct result, they will keep the current position. In either/or cases the current player will move forward one tile.
+- Tunnel Tile: The player that reaches such tile moves forward a random number of tiles between 1 and 3.
+- Trap Tile: This tile works in the same way as the Tunnel Tile but instead of moving forward, the players will move backwards.
 
 
 ## Index
