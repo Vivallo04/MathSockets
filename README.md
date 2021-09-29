@@ -9,6 +9,9 @@
 ![MathSockets Class Diagram.png](docs/UML/MathSockets_Class_Diagram.png)
 
 
+## Download
+
+
 ## Building
 
 If you'd rather compile the source code on your own, follow these instructions.
@@ -34,17 +37,18 @@ the terminal returns `Permission denied` or `Command not found` on Mac/Linux, ru
 
 ## Documentation
 
-
-
-## Math Sockets' State Machine
-![MathSockets StateMachine.png](docs/UML/MathSocketsStateWorkflow.png)
-
+- [Specifications](https://github.com/Vivallo04/MathSockets/wiki/1.-Maintaining-the-Integrity-of-the-Specifications) 
+- [Class Diagram](https://github.com/Vivallo04/MathSockets/wiki/Class-Diagram)
+- [Design Patterns used in the solution](https://github.com/Vivallo04/MathSockets/wiki/Design-Patterns)
+- [Game States](https://github.com/Vivallo04/MathSockets/wiki/Main-Game-States)
+- [Data Structures](https://github.com/Vivallo04/MathSockets/wiki/Data-Structures)
+- [Algorithms](https://github.com/Vivallo04/MathSockets/wiki/Algorithms)
+- [Bugs](https://github.com/Vivallo04/MathSockets/wiki/Bugs)
 
 ## Feature Request
 For feature requests and feedback you can create a new post [here](https://github.com/Vivallo04/MathSockets/issues).
 
 
-## Download
 
 
  
