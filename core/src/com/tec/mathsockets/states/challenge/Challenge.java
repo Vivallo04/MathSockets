@@ -20,7 +20,6 @@ public class Challenge {
 
     Scanner playerResult = new Scanner(System.in);
 
-
     int userInput;
     private int num1;
     private int num2;
@@ -78,48 +77,37 @@ public class Challenge {
     }
 
 
-
     /**
      * Set the operation in a String variable and do the math problem
-     * @return void
      */
     public void askForChallenge() {
         if (getRandomOperation().equals(Operation.ADDITION)) {
             problem = num1 + " + " + num2;
-            //System.out.println("La operación es suma de: " + problema);
             result = num1 + num2;
             System.out.println(TAG + " Suma resultado: " + result);
             userInput = playerResult.nextInt();
 
             if (userInput == result) {
-                System.out.println("Correcto!");
                 return;
             }
-            System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
             problem = num1 + " - " + num2;
-            System.out.println("La operación es resta de: " + problem);
             result = num1 - num2;
             System.out.println(TAG + " resta resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
-                System.out.println("Correcto!");
                 return;
             }
-            System.out.println("Oops");
 
         } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
             problem = num1 + " * " + num2;
-            System.out.println("La operación es multiplicación de: " + problem);
             result = num1 * num2;
             System.out.println(TAG + " multiplicación resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
-                System.out.println("Correcto!");
                 return;
             }
-            System.out.println("Oops");
 
         } else {
             problem = num1 + " / " + num2;
@@ -129,11 +117,8 @@ public class Challenge {
             System.out.println(TAG + " división resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
-                System.out.println("Correcto!");
                 return;
             }
-            System.out.println("Oops");
-
         }
     }
 
@@ -141,7 +126,7 @@ public class Challenge {
      * Get the string variable with the problem to resolve
      * @return String math problem
      */
-    public static String getProblem(){
+    public static String getProblem() {
         return problem;
     }
 

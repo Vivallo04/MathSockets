@@ -28,14 +28,13 @@ public class MathSockets extends Game {
 	public static GameState gameState;
 	public static LoadingState loadingState;
 	public static ChallengeState challengeState;
-	private MainMenuState MainMenuState;
+	private static MainMenuState MainMenuState;
 
 	public static StateMachine stateMachine;
 
 	protected Kryo kryo;
 	protected GServer gameServer;
 	protected GClient gameClient;
-
 
 
 	/**
@@ -56,7 +55,7 @@ public class MathSockets extends Game {
 		loadingState = new LoadingState(this);
 		MainMenuState = new MainMenuState(this);
 		//challengeState = new ChallengeState(this);
-		setScreen(loadingState);
+		setScreen(gameState);
 
 		try {
 			gameServer = GServer.getGServerInstance();

@@ -1,7 +1,10 @@
 package com.tec.mathsockets.states.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.states.game.tiles.*;
 import com.tec.mathsockets.util.Utility;
 
@@ -18,12 +21,21 @@ public class Board {
         BIG
     }
 
-
-    private LinkedList<Tile> boardNodes;
+    public LinkedList<Tile> boardNodes;
     private int totalTiles;
 
+    private ShapeRenderer shapeRenderer;
+    private Player player;
+
+
+    /**
+     * Generate the game board according the selected size
+     * @param boardSize integer (small, medium, big)
+     */
     public Board(BoardSize boardSize) {
         boardNodes = new LinkedList<Tile>();
+        shapeRenderer = new ShapeRenderer();
+        player = new Player(this);
 
         if (boardSize.equals(BoardSize.SMALL)) {
             totalTiles = 16;
@@ -66,38 +78,68 @@ public class Board {
         }
     }
 
-
+    /**
+     * Interface for rendering all the Board's components
+     * @param batch GameState's sprite batch
+     */
     public void render(SpriteBatch batch) {
+        renderGraphics(batch);
+        player.render(batch);
+    }
+
+    /**
+     * Render the board with pseudo-random tiles on the GameState Screen
+     * @param batch Game's sprite batch
+     */
+    public void renderGraphics(SpriteBatch batch) {
         int currentNode = 0;
-        int offset = 80;
+        int offsetX = 80;
+        int offsetY = 65;
         int i = 1; // x pos
         int j = 1; // y pos
         for (Tile tile: boardNodes) {
             int x = i * tile.getWIDTH();
-            int y = j * tile.getHEIGHT();
+            int y = Gdx.graphics.getHeight() - (j * tile.getHEIGHT());
 
             // in-line
             if (boardNodes.size() % i == 0 && i != 1) {
-                batch.draw(tile.getTileTexture(), x - offset, (Gdx.graphics.getHeight() - y) - tile.getHEIGHT() / 2,
+                batch.draw(tile.getTileTexture(), x - offsetX, y - (tile.getHEIGHT() / 2),
                         tile.getWIDTH(), tile.getHEIGHT());
-                tile.addCenterNode((x - offset) + (tile.getWIDTH() / 2) , y / 2);
+
+                tile.addCenterNode((x - offsetX) + (tile.getWIDTH() / 2) , (y - offsetY) + (tile.getHEIGHT()/ 2));
                 currentNode++;
-                j++;
                 i = 1;
+                j++;
             } else {
-                batch.draw(tile.getTileTexture(), x - offset, (Gdx.graphics.getHeight() - y) - tile.getHEIGHT() / 2,
+                batch.draw(tile.getTileTexture(), x - offsetX, y - (tile.getHEIGHT() / 2),
                         tile.getWIDTH(), tile.getHEIGHT());
-                tile.addCenterNode((x - offset) + (tile.getWIDTH() / 2), y / 2);
+
+                tile.addCenterNode((x - offsetX) + (tile.getWIDTH() / 2),(y - offsetY) + (tile.getWIDTH() / 2));
                 currentNode++;
                 i++;
             }
         }
     }
 
+    /**
+     * Render center nodes for debugging purposes
+     */
+    private void renderCenterNodes() {
+        shapeRenderer.setColor(Color.BLACK);
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        for (Tile tile: boardNodes) {
+            int x = (int) tile.getCenterNode().x;
+            int y = (int) tile.getCenterNode().y;
+            shapeRenderer.circle(x, y, 12);
+        }
+        shapeRenderer.end();
+
+    }
 
     /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
         boardNodes.removeAll(boardNodes);
+        player.dispose();
     }
 
 

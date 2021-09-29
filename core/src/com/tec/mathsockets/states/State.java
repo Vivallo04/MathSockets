@@ -13,6 +13,7 @@ public abstract class State extends Stage implements Screen {
         Gdx.input.setInputProcessor(this);
     }
 
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(255, 255, 255, 1);
@@ -21,6 +22,7 @@ public abstract class State extends Stage implements Screen {
         super.act(delta);
         super.draw();
     }
+
 
     @Override
     public void resize(int width, int height) {

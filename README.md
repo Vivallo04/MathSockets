@@ -50,7 +50,6 @@ For feature requests and feedback you can create a new post [here](https://githu
 
 
 
-
  
 ## License
 This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE).

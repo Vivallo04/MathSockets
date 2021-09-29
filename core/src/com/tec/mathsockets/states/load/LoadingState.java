@@ -31,7 +31,6 @@ public class LoadingState extends State {
         Utility.loadTextureAsset(logoPath);
         logoAsset = Utility.getTextureAsset(logoPath);
         displayLogo = new Sprite(logoAsset);
-
     }
 
 
@@ -44,7 +43,6 @@ public class LoadingState extends State {
     public void render(float delta) {
         super.render(delta);
 
-        //Gdx.gl.glEnable(GL20.GL_ARRAY_BUFFER_BINDING);
         game.getBatch().begin();
         displayLogo.draw(game.getBatch());
 
@@ -52,23 +50,22 @@ public class LoadingState extends State {
         displayLogo.setX((Gdx.graphics.getWidth() - displayLogo.getWidth()) / 2f);
         displayLogo.setY((Gdx.graphics.getHeight() - displayLogo.getHeight()) / 2f);
 
-        game.getBatch().end();
         displayLogo.setAlpha(alpha);
+        game.getBatch().end();
 
         timeSeconds += Gdx.graphics.getDeltaTime();
-        System.out.println(timeSeconds);
         if (timeSeconds > period) {
             alpha += period;
             timeSeconds -= period;
 
+            if (timeSeconds >= 7f){
+                //game.setScreen(new MainMenuState(game));
+            }
+
             if (alpha >= 1) {
                 alpha = 1f;
-                if(timeSeconds >= 7){
-                    System.out.println("tiempo de espera terminó");
-                    game.setScreen(new MainMenuState(game));
-                    dispose();
-                }
             }
+
         }
     }
 

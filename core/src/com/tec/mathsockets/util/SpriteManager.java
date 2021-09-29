@@ -257,5 +257,4 @@ public class SpriteManager {
     public void setFRAME_ROWS_IDLE(int FRAME_ROWS_IDLE) {
         this.FRAME_ROWS_IDLE = FRAME_ROWS_IDLE;
     }
-
 }

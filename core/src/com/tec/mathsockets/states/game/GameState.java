@@ -15,16 +15,18 @@ import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.states.State;
 import com.tec.mathsockets.util.Utility;
 
+import java.io.IOException;
+import java.util.HashMap;
+
 
 public class GameState extends State {
 
-    // TODO: ADD SPRITES & ANIMATIONS || IMPLEMENT SPRITESHEET WITH ANIMATIONS
-    //       ADD PLAYERS TO GAME
+    // TODO: PLAYER TRAVERSE GAME BOARD
     //       PARSE JSON FILES
     //       ADD PLAYER'S INFO
 
-
     private final String defaultBackgroundPath = "backgrounds/background1.png";
+
     private static final String TAG = GameState.class.getSimpleName();
 
     private final MathSockets game;
@@ -39,16 +41,15 @@ public class GameState extends State {
         static float aspectRatio;
     }
 
-
     private final OrthogonalTiledMapRenderer mapRenderer = null;
     private OrthographicCamera camera = null;
 
     private static Board board;
 
+    // Parallax background sprites
+    private Texture[] backgroundParallaxTexturesArray = new Texture[5];
     private final Texture background;
     private int backgroundX = 0;
-
-    private Player player;
 
 
     /**
@@ -58,11 +59,11 @@ public class GameState extends State {
     public GameState(final MathSockets game) {
         this.game = game;
 
-        // Load textures
+        loadBackgroundSprites();
+
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
-        player = new Player();
     }
 
 
@@ -87,11 +88,33 @@ public class GameState extends State {
      */
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        super.render(delta);
         game.getBatch().begin();
 
+        renderParallaxBackground();
+        board.render(game.getBatch());
+
+        game.getBatch().end();
+    }
+
+    // ---------------------------------- PARALLAX BACKGROUND -----------------------------
+    public void loadBackgroundSprites() {
+        String skyPath = "backgrounds/sky.png";
+        String clouds1Path = "backgrounds/clouds_bg.png";
+        String clouds2Path = "backgrounds/clouds_mg_3.png";
+        String clouds3Path = "backgrounds/clouds_mg_2.png";
+        String clouds4Path = "backgrounds/clouds_mg_1.png";
+        String mountainsPath = "backgrounds/glacial_mountains.png";
+        // Load textures
+        Utility.loadTextureAsset(skyPath);
+        Utility.loadTextureAsset(clouds1Path);
+        Utility.loadTextureAsset(clouds2Path);
+        Utility.loadTextureAsset(clouds3Path);
+        Utility.loadTextureAsset(clouds4Path);
+        Utility.loadTextureAsset(mountainsPath);
+    }
+
+    public void renderParallaxBackground() {
         game.getBatch().draw(background, backgroundX, 0,
                 Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         game.getBatch().draw(background, backgroundX + Gdx.graphics.getWidth(), 0,
@@ -102,20 +125,12 @@ public class GameState extends State {
         int backgroundVelocity = 1;
         backgroundX -= backgroundVelocity;
         if ((backgroundX + Gdx.graphics.getWidth()) == 0) backgroundX = 0;
-
-        board.render(game.getBatch());
-        player.render(game.getBatch(), 50, 50);
-        game.getBatch().end();
     }
 
 
+    //----------------------------------------------------------------------------
     public void setupViewport(int with, int height) {
 
-    }
-
-
-    public SpriteBatch getGameStateBatch() {
-        return this.game.getBatch();
     }
 
     @Override
