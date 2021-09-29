@@ -15,14 +15,15 @@ MathSockets is a board game for two online-players. The game consists of a n x n
 
 ## Index
 
-- [Introduction](https://github.com/Vivallo04/MathSockets/wiki/I.-INTRODUCTION)
-- [Specifications](https://github.com/Vivallo04/MathSockets/wiki/A.-Maintaining-the-Integrity-of-the-Specifications) 
-- [Class Diagram](https://github.com/Vivallo04/MathSockets/wiki/B.-Class-Diagram)
-- [Design Patterns used in the solution](https://github.com/Vivallo04/MathSockets/wiki/C.-Design-Patterns)
-- [Game States](https://github.com/Vivallo04/MathSockets/wiki/D.-Main-Game-States)
-- [Data Structures](https://github.com/Vivallo04/MathSockets/wiki/E.-Data-Structures)
-- [Algorithms](https://github.com/Vivallo04/MathSockets/wiki/F.-Algorithms)
-- [Bugs](https://github.com/Vivallo04/MathSockets/wiki/G.-Bugs)
+- [Wiki Home](https://github.com/Vivallo04/MathSockets/wiki)
+- [Specifications](https://github.com/Vivallo04/MathSockets/wiki/1.-Maintaining-the-Integrity-of-the-Specifications) 
+- [Class Diagram](https://github.com/Vivallo04/MathSockets/wiki/Class-Diagram)
+- [Design Patterns used in the solution](https://github.com/Vivallo04/MathSockets/wiki/Design-Patterns)
+- [Game States](https://github.com/Vivallo04/MathSockets/wiki/Main-Game-States)
+- [Data Structures](https://github.com/Vivallo04/MathSockets/wiki/Data-Structures)
+- [Algorithms](https://github.com/Vivallo04/MathSockets/wiki/Algorithms)
+- [Bugs](https://github.com/Vivallo04/MathSockets/wiki/Bugs)
+
 
 ## Contributors
 1. @Vivallo04
