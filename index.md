@@ -35,7 +35,7 @@ MathSockets is a board game for two online-players. The game consists of a n x n
 2. @Noemi2002
 3. @Crik845
 
-
+---
 ## License
 This project is licensed under the terms of the [GNU General Public License v3.0](LICENSE).
 
