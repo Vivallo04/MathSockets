@@ -1,0 +1,17 @@
+unnamed package
+com.tec.mathsockets
+com.tec.mathsockets.desktop
+com.tec.mathsockets.entity
+com.tec.mathsockets.network
+com.tec.mathsockets.states
+com.tec.mathsockets.states.challenge
+com.tec.mathsockets.states.game
+com.tec.mathsockets.states.game.tiles
+com.tec.mathsockets.states.load
+com.tec.mathsockets.states.menu
+com.tec.mathsockets.states.menu.about
+com.tec.mathsockets.states.menu.help
+com.tec.mathsockets.states.menu.pause
+com.tec.mathsockets.states.menu.settings
+com.tec.mathsockets.states.win
+com.tec.mathsockets.util
