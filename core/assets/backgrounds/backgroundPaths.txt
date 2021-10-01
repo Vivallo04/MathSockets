@@ -1,0 +1,6 @@
+backgrounds/sky.png
+backgrounds/clouds_bg.png
+backgrounds/glacial_mountains.png
+backgrounds/clouds_mg_3.png
+backgrounds/clouds_mg_2.png
+backgrounds/clouds_mg_1.png

@@ -25,26 +25,41 @@ public class Player extends Entity {
     private SpriteManager spriteManager;
     private Board board;
 
-    private int initialX;
-    private int initialY;
+    private Vector2 currentPlayerVector;
+    private Vector2 previousPlayerVector;
+
+    private int playerPosIndex;
+
 
     public Player(Board board) {
         this.board = board;
         this.spriteManager = new SpriteManager(SpriteManager.CharacterType.BLANKEY);
-
-
     }
 
     public void render(SpriteBatch batch) {
         int offsetX = 65;
         int offsetY = 50;
-
-        initialX = (int) board.boardNodes.getFirst().getCenterNode().x;
-        initialY = (int) board.boardNodes.getFirst().getCenterNode().y;
+        playerPosIndex = board.boardNodes.getFirst().getTileCount();
+        currentPlayerVector = new Vector2(board.boardNodes.getFirst().getCenterNode().x,
+                                          board.boardNodes.getFirst().getCenterNode().y);
 
         spriteManager.addStateTime(Gdx.graphics.getDeltaTime());
         currentPlayerFrame = spriteManager.getWalkAnimation().getKeyFrame(spriteManager.getStateTime(), true);
-        batch.draw(currentPlayerFrame, initialX - offsetX,initialY - offsetY, PLAYER_WIDTH, PLAYER_HEIGHT);
+        batch.draw(currentPlayerFrame, currentPlayerVector.x - offsetX,currentPlayerVector.y - offsetY, PLAYER_WIDTH, PLAYER_HEIGHT);
+    }
+
+    public void goToNextTile() {
+        int newPlayerPos = playerPosIndex + 1;
+        previousPlayerVector = new Vector2(currentPlayerVector);
+        currentPlayerVector = new Vector2(board.boardNodes.get(playerPosIndex).getCenterNode());
+    }
+
+    public Vector2 getCurrentPlayerVector() {
+        return currentPlayerVector;
+    }
+
+    public void setCurrentPlayerVector(Vector2 currentPlayerVector) {
+        this.currentPlayerVector = currentPlayerVector;
     }
 
     public void dispose() {
