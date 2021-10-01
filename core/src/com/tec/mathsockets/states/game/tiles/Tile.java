@@ -25,10 +25,10 @@ public abstract class Tile {
     protected final int WIDTH = 128;
     protected final int HEIGHT = 128;
 
-    protected int tileCount;
+    protected int tileCountIndex;
 
     public Tile() {
-        tileCount++;
+        tileCountIndex++;
     }
 
     protected void init(String tileTexturePath, TileType tileType) {
@@ -47,9 +47,6 @@ public abstract class Tile {
         };
     }
 
-    public int getTileCount() {
-        return this.tileCount;
-    }
 
     public TileType getTileType() {
         return this.tileType;
@@ -77,6 +74,15 @@ public abstract class Tile {
 
     public String getTileTexturePath() {
         return tileTexturePath;
+    }
+
+
+    public int getTileCountIndex() {
+        return this.tileCountIndex;
+    }
+
+    public void setTileCountIndex(int tileCountIndex) {
+        this.tileCountIndex = tileCountIndex;
     }
 
     //Getters & Setters --------------------------------------------------------

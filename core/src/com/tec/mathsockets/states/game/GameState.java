@@ -21,7 +21,8 @@ import java.util.HashMap;
 
 public class GameState extends State {
 
-    // TODO: PLAYER TRAVERSE GAME BOARD
+    // TODO: PLAYER TRAVERSE GAME BOARD => Dice
+    //       CHANGE FIELD'S NAMES
     //       PARSE JSON FILES
     //       ADD PLAYER'S INFO
 

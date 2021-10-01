@@ -18,8 +18,8 @@ import java.io.IOException;
 
 public class MathSockets extends Game {
 
-	//TODO: URGENTE => TERMINAR DE IMPLEMENTAR JAVADOC Y COMPILAR
-	//      OBSERVER => REQUEST
+	//TODO: OBSERVER => REQUEST
+	//      Mouse pointer sprite
 	//      STATE MACHINE
 	//      FACTORY METHOD
 	private final String TAG = MathSockets.class.getSimpleName();
@@ -43,8 +43,8 @@ public class MathSockets extends Game {
 	 */
 	public MathSockets() {
 		kryo = GServer.getServerInstance().getKryo();
-		//kryo.register(GServer.someRequest.class);
-		//kryo.register(GServer.someResponse.class);
+		kryo.register(GServer.someRequest.class);
+		kryo.register(GServer.someResponse.class);
 	}
 
 

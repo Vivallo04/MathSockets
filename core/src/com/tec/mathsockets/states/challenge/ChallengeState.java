@@ -47,7 +47,7 @@ public class ChallengeState extends State {
         font = new BitmapFont();
         batch = new SpriteBatch();
         stage = new Stage();
-        skin = new Skin(Gdx.files.internal("ui_skin.json"));
+        skin = new Skin(Gdx.files.internal("atlases/UI_ATLAS.atlas"));
         table = new Table();
 
     }

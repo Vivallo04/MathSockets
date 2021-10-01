@@ -9,7 +9,6 @@ import com.tec.mathsockets.states.game.tiles.*;
 import com.tec.mathsockets.util.Utility;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 public class Board {
 
@@ -21,22 +20,24 @@ public class Board {
         BIG
     }
 
-    public LinkedList<Tile> boardNodes;
+    public LinkedList<Tile> boardTileNodes;
     private int totalTiles;
 
     private ShapeRenderer shapeRenderer;
     private Player player;
 
 
+    float timeSeconds = 0f;
+    float period = 2f;
+
     /**
      * Generate the game board according the selected size
      * @param boardSize integer (small, medium, big)
      */
     public Board(BoardSize boardSize) {
-        boardNodes = new LinkedList<Tile>();
+        boardTileNodes = new LinkedList<Tile>();
         shapeRenderer = new ShapeRenderer();
         player = new Player(this);
-
         if (boardSize.equals(BoardSize.SMALL)) {
             totalTiles = 16;
         } else if (boardSize.equals(BoardSize.MEDIUM)) {
@@ -47,9 +48,13 @@ public class Board {
         populateBoard();
     }
 
+    public LinkedList<Tile> getBoardTileNodes() {
+        return boardTileNodes;
+    }
+
 
     /**
-     * Add random tiles to @boardNodes until the tile count
+     * Add random tiles to @boardTileNodes until the tile count
      * is equal totalTiles
      */
     public void populateBoard() {
@@ -58,21 +63,21 @@ public class Board {
         while(tileCount < totalTiles) {
             int rNum = Utility.random.nextInt(50 + 1);
             if (tileCount == 0) {
-                boardNodes.add(new StartTile());
+                boardTileNodes.add(new StartTile());
                 tileCount++;
             }
             if (tileCount == totalTiles - 1) {
-                boardNodes.add(new WinTile());
-                Gdx.app.debug(TAG, "Board has been populated with: " + boardNodes.size() + " nodes");
+                boardTileNodes.add(new WinTile());
+                Gdx.app.debug(TAG, "Board has been populated with: " + boardTileNodes.size() + " nodes");
                 return;
             }
 
             if (Utility.inRange(rNum, 0, 25)){
-                boardNodes.add(new ChallengeTile());
+                boardTileNodes.add(new ChallengeTile());
             } else if (Utility.inRange(rNum, 26, 38)) {
-                boardNodes.add(new TunnelTile());
+                boardTileNodes.add(new TunnelTile());
             } else {
-                boardNodes.add(new TrapTile());
+                boardTileNodes.add(new TrapTile());
             }
             tileCount++;
         }
@@ -83,6 +88,12 @@ public class Board {
      * @param batch GameState's sprite batch
      */
     public void render(SpriteBatch batch) {
+        timeSeconds += Gdx.graphics.getDeltaTime();
+        if (timeSeconds > period) {
+            timeSeconds -= period;
+            System.out.println("-------------------------  TRUE --------------------");
+            player.goToNextTile();
+        }
         renderGraphics(batch);
         player.render(batch);
     }
@@ -92,20 +103,22 @@ public class Board {
      * @param batch Game's sprite batch
      */
     public void renderGraphics(SpriteBatch batch) {
+
         int currentNode = 0;
         int offsetX = 80;
         int offsetY = 65;
         int i = 1; // x pos
         int j = 1; // y pos
-        for (Tile tile: boardNodes) {
+        for (Tile tile: boardTileNodes) {
             int x = i * tile.getWIDTH();
             int y = Gdx.graphics.getHeight() - (j * tile.getHEIGHT());
 
             // in-line
-            if (boardNodes.size() % i == 0 && i != 1) {
+            if (boardTileNodes.size() % i == 0 && i != 1) {
                 batch.draw(tile.getTileTexture(), x - offsetX, y - (tile.getHEIGHT() / 2),
                         tile.getWIDTH(), tile.getHEIGHT());
 
+                tile.setTileCountIndex(currentNode);
                 tile.addCenterNode((x - offsetX) + (tile.getWIDTH() / 2) , (y - offsetY) + (tile.getHEIGHT()/ 2));
                 currentNode++;
                 i = 1;
@@ -114,6 +127,7 @@ public class Board {
                 batch.draw(tile.getTileTexture(), x - offsetX, y - (tile.getHEIGHT() / 2),
                         tile.getWIDTH(), tile.getHEIGHT());
 
+                tile.setTileCountIndex(currentNode);
                 tile.addCenterNode((x - offsetX) + (tile.getWIDTH() / 2),(y - offsetY) + (tile.getWIDTH() / 2));
                 currentNode++;
                 i++;
@@ -127,7 +141,7 @@ public class Board {
     private void renderCenterNodes() {
         shapeRenderer.setColor(Color.BLACK);
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        for (Tile tile: boardNodes) {
+        for (Tile tile: boardTileNodes) {
             int x = (int) tile.getCenterNode().x;
             int y = (int) tile.getCenterNode().y;
             shapeRenderer.circle(x, y, 12);
@@ -136,10 +150,11 @@ public class Board {
 
     }
 
+
     /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
-        boardNodes.removeAll(boardNodes);
-        player.dispose();
+        boardTileNodes.removeAll(boardTileNodes);
+        //player.dispose();
     }
 
 
