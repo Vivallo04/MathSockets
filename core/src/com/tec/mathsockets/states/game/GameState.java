@@ -13,6 +13,7 @@ import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
 import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.util.StateMachine;
 import com.tec.mathsockets.util.Utility;
 
 import java.io.IOException;
@@ -91,7 +92,7 @@ public class GameState extends State {
     public void render(float delta) {
         super.render(delta);
         game.getBatch().begin();
-
+        System.out.println("render");
         renderParallaxBackground();
         board.render(game.getBatch());
 

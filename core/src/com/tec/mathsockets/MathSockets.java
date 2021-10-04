@@ -43,9 +43,9 @@ public class MathSockets extends Game {
 	private static HelpState helpState;
 	private static AboutState aboutState;
 
-	public static StateMachine stateMachine;
+	public static final StateMachine stateMachine = new StateMachine();
 
-	public static State currentState;
+	public StateMachine.StateType currentState;
 
 	protected Kryo kryo;
 	protected GServer gameServer;
@@ -57,22 +57,23 @@ public class MathSockets extends Game {
 	 * for request and responses
 	 */
 	public MathSockets() {
-		stateMachine = new StateMachine();
 		kryo = GServer.getServerInstance().getKryo();
 		kryo.register(GServer.someRequest.class);
 		kryo.register(GServer.someResponse.class);
+		currentState = StateMachine.StateType.LOADING_STATE;
 	}
 
 
 	@Override
-	public void create () {
+	public void create() {
+
 		batch = new SpriteBatch();
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		mainMenuState = new MainMenuState(this);
 		challengeState = new ChallengeState(this);
-		currentState = stateMachine.changeState(StateMachine.StateType.GAME_STATE);
-		setScreen(currentState);
+		Gdx.app.debug(TAG, "Current state: " + currentState);
+		setScreen(stateMachine.getState(currentState));
 
 
 		try {
@@ -139,9 +140,9 @@ public class MathSockets extends Game {
 	 */
 	@Override
 	public void dispose () {
-		gameState.dispose();
 		gameClient.dispose();
 		gameServer.dispose();
+		loadingState.dispose();
 	}
 
 }

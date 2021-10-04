@@ -18,6 +18,10 @@ public class StateMachine {
         WIN_STATE
     }
 
+    public State getState(StateType state) {
+        return changeState(state);
+    }
+
     public State changeState(StateType newState) {
         switch (newState) {
             case LOADING_STATE:

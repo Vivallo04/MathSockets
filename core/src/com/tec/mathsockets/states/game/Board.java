@@ -94,7 +94,7 @@ public class Board {
         timeSeconds += Gdx.graphics.getDeltaTime();
         if (timeSeconds > period) {
             timeSeconds -= period;
-            MathSockets.stateMachine.changeState(StateMachine.StateType.LOADING_STATE);
+            System.out.println("Cambio");
             player.goToNextTile();
         }
         renderGraphics(batch);

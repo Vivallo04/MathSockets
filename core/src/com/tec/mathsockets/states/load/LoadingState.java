@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.util.StateMachine;
 import com.tec.mathsockets.util.Utility;
 
 public class LoadingState extends State {
@@ -53,8 +54,8 @@ public class LoadingState extends State {
             alpha += period;
             timeSeconds -= period;
 
-            if (timeSeconds >= 7f){
-                //game.setScreen(new MainMenuState(game));
+            if (timeSeconds >= 3f) {
+                game.currentState = StateMachine.StateType.GAME_STATE;
             }
             if (alpha >= 1) {
                 alpha = 1f;
