@@ -18,7 +18,7 @@ public class StateMachine {
         WIN_STATE
     }
 
-    public State switchState(StateType newState) {
+    public State changeState(StateType newState) {
         switch (newState) {
             case CONNECT_STATE:
                 return MathSockets.gameState;
@@ -41,7 +41,7 @@ public class StateMachine {
             case ABOUT_STATE:
                 return MathSockets.gameState;
             default:
-                throw new IllegalStateException("No newState has been selected");
+                throw new IllegalStateException("No new State has been selected");
         }
     }
 }

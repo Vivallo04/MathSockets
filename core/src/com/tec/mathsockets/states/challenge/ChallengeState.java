@@ -20,6 +20,7 @@ import java.awt.*;
 public class ChallengeState extends State {
 
     private final MathSockets game;
+
     private ShapeRenderer shapeRenderer;
     public SpriteBatch batch;
     private BitmapFont font;

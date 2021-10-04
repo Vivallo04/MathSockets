@@ -2,34 +2,29 @@ package com.tec.mathsockets.states.load;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
-import com.tec.mathsockets.states.game.GameState;
-import com.tec.mathsockets.states.menu.MainMenuState;
 import com.tec.mathsockets.util.Utility;
 
 public class LoadingState extends State {
 
     private final MathSockets game;
 
-    public static GameState gameState;
     private float timeSeconds = 0f;
     private float period = 0.003f;
     private float alpha = 0f;
 
-    private final String logoPath = "design/logo.png";
+    private final String LOGO_PATH = "design/logo.png";
     private final Texture logoAsset;
     private final Sprite displayLogo;
 
 
-
     public LoadingState(MathSockets game) {
         this.game = game;
-        Utility.loadTextureAsset(logoPath);
-        logoAsset = Utility.getTextureAsset(logoPath);
+        Utility.loadTextureAsset(LOGO_PATH);
+        logoAsset = Utility.getTextureAsset(LOGO_PATH);
         displayLogo = new Sprite(logoAsset);
     }
 
@@ -61,7 +56,6 @@ public class LoadingState extends State {
             if (timeSeconds >= 7f){
                 //game.setScreen(new MainMenuState(game));
             }
-
             if (alpha >= 1) {
                 alpha = 1f;
             }
@@ -72,6 +66,6 @@ public class LoadingState extends State {
     @Override
     public void dispose() {
         super.dispose();
-        Utility.unloadAsset(logoPath);
+        Utility.unloadAsset(LOGO_PATH);
     }
 }
