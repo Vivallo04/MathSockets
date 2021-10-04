@@ -2,20 +2,18 @@ package com.tec.mathsockets.states.challenge;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.util.Utility;
+import org.graalvm.compiler.core.common.util.Util;
 
-
-import java.awt.*;
 
 public class ChallengeState extends State {
 
@@ -23,12 +21,8 @@ public class ChallengeState extends State {
 
     private ShapeRenderer shapeRenderer;
     public SpriteBatch batch;
-    private BitmapFont font;
-    private Skin skin;
-    private Stage stage;
     Table table;
 
-    TextField text;
     TextButton button;
 
     /**
@@ -45,10 +39,7 @@ public class ChallengeState extends State {
      */
     public void create() {
         shapeRenderer = new ShapeRenderer();
-        font = new BitmapFont();
         batch = new SpriteBatch();
-        stage = new Stage();
-        skin = new Skin(Gdx.files.internal("atlases/UI_ATLAS.atlas"));
         table = new Table();
 
     }
@@ -65,13 +56,11 @@ public class ChallengeState extends State {
 
         int offset = 60;
 
-        
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.rect(offset / 2, offset / 2, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
         shapeRenderer.end();
 
         batch.begin();
-            font.draw(batch, Challenge.getProblem(), 550, 500);
         batch.end();
     }
 
@@ -86,12 +75,12 @@ public class ChallengeState extends State {
         table.setFillParent(true);
         table.top();
 
-        button = new TextButton("Verify", skin);
+        button = new TextButton("Verify", Utility.UI_Skin);
         button.setPosition(0,0);
         button.setSize(15, 10);
 
 
-        //text = new TextField("Hola", skin);
+        //text = new TextField("Hello", Utility.UI_Skin);
         //text.setPosition(15,15);
         //text.setSize(300, 40);
 
@@ -107,17 +96,14 @@ public class ChallengeState extends State {
            }
        });
         table.add(button);
-        stage.addActor(table);
-        stage.addActor(button);
-        //stage.addActor(text);
+        super.addActor(table);
+        super.addActor(button);
+        //super.addActor(text);
     }
 
     @Override
     public void dispose() {
         super.dispose();
-        stage.dispose();
-        skin.dispose();
-
     }
 
 
