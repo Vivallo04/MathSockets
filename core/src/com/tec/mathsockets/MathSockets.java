@@ -72,8 +72,8 @@ public class MathSockets extends Game {
 		mainMenuState = new MainMenuState(this);
 		challengeState = new ChallengeState(this);
 		currentState = stateMachine.changeState(StateMachine.StateType.GAME_STATE);
-
 		setScreen(currentState);
+
 
 		try {
 			gameServer = GServer.getGServerInstance();

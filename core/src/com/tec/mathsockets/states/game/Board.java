@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.states.game.tiles.*;
+import com.tec.mathsockets.states.load.LoadingState;
+import com.tec.mathsockets.util.StateMachine;
 import com.tec.mathsockets.util.Utility;
 
 import java.util.LinkedList;
@@ -28,7 +31,7 @@ public class Board {
 
 
     float timeSeconds = 0f;
-    float period = 2f;
+    float period = 0.5f;
 
     /**
      * Generate the game board according the selected size
@@ -91,7 +94,7 @@ public class Board {
         timeSeconds += Gdx.graphics.getDeltaTime();
         if (timeSeconds > period) {
             timeSeconds -= period;
-            System.out.println("-------------------------  TRUE --------------------");
+            MathSockets.stateMachine.changeState(StateMachine.StateType.LOADING_STATE);
             player.goToNextTile();
         }
         renderGraphics(batch);

@@ -5,11 +5,13 @@ import com.tec.mathsockets.states.State;
 
 public class StateMachine {
 
-    public enum StateType {
+    public static enum StateType {
         ABOUT_STATE,
         CHOOSE_AVATAR_STATE,
+        CHALLENGE_STATE,
         GAME_STATE,
         HELP_STATE,
+        LOADING_STATE,
         MAIN_MENU_STATE,
         PAUSE_STATE,
         SETTINGS_STATE,
@@ -18,8 +20,12 @@ public class StateMachine {
 
     public State changeState(StateType newState) {
         switch (newState) {
+            case LOADING_STATE:
+                return MathSockets.getLoadingState();
             case CHOOSE_AVATAR_STATE:
                 return MathSockets.getChooseAvatarState();
+            case CHALLENGE_STATE:
+                return MathSockets.getChallengeState();
             case MAIN_MENU_STATE:
                 return MathSockets.getMainMenuState();
             case GAME_STATE:
