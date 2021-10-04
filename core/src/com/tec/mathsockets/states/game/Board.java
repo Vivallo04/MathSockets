@@ -154,7 +154,7 @@ public class Board {
     /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
         boardTileNodes.removeAll(boardTileNodes);
-        //player.dispose();
+        player.dispose();
     }
 
 

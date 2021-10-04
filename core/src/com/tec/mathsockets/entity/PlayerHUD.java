@@ -3,12 +3,16 @@ package com.tec.mathsockets.entity;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.tec.mathsockets.states.game.Dice;
 
 public class PlayerHUD implements Screen {
 
     public final String TAG = PlayerHUD.class.getSimpleName();
     private Viewport viewport;
     private Camera camera;
+
+    private Dice gameDice;
+
 
     public PlayerHUD(Camera camera, Entity player) {
         this.camera = camera;

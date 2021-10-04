@@ -34,11 +34,10 @@ public class Player extends Entity {
 
     public Player(Board board) {
         this.board = board;
-        this.spriteManager = new SpriteManager(SpriteManager.CharacterType.BLANKEY);
+        this.spriteManager = new SpriteManager(SpriteManager.CharacterType.ROBO_RETRO);
 
-
+        //players starts ath the 0th node of the board
         playerPosIndex = 0;
-        // get the first node and set it as the player's position
     }
 
     public void render(SpriteBatch batch) {
@@ -47,7 +46,7 @@ public class Player extends Entity {
 
         spriteManager.addStateTime(Gdx.graphics.getDeltaTime());
 
-
+        // get the first node and set it as the player's position
         currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode().x,
                 board.boardTileNodes.get(playerPosIndex).getCenterNode().y);;
 

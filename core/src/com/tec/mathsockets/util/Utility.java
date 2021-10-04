@@ -5,13 +5,11 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -26,8 +24,9 @@ public final class Utility {
     private static final String UI_SKIN_PATH = "skins/ui_skin.json";
     private static final String UI_TEXTURE_ATLAS_PATH = "atlases/UI_ATLAS.atlas";
 
-    //public static TextureAtlas UI_TEXTURE_ATLAS = new TextureAtlas(UI_TEXTURE_ATLAS_PATH);
-    //public static final Skin UI_SKIN = new Skin(Gdx.files.internal(UI_SKIN_PATH), UI_TEXTURE_ATLAS);
+    public static final TextureAtlas texturesAtlas = new TextureAtlas(Gdx.files.internal(UI_TEXTURE_ATLAS_PATH));
+
+    public static final Skin UI_Skin = new Skin(Gdx.files.internal(UI_SKIN_PATH), texturesAtlas);
 
     public static final Random random = new Random();
     public static SpriteManager spriteManager;
@@ -138,4 +137,5 @@ public final class Utility {
         }
         return value;
     }
+
 }
