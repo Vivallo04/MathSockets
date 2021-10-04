@@ -150,7 +150,7 @@ public class GameState extends State {
 
 
     /**
-     * Go back to the previous state when paused
+     * Go back to the previous currentState when paused
      */
     @Override
     public void resume() {

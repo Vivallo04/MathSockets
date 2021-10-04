@@ -8,38 +8,32 @@ public class StateMachine {
     public enum StateType {
         ABOUT_STATE,
         CHOOSE_AVATAR_STATE,
-        CONNECT_STATE,
         GAME_STATE,
-        HOW_TO_PLAY_STATE,
+        HELP_STATE,
         MAIN_MENU_STATE,
         PAUSE_STATE,
-        SELECT_PORT_STATE,
         SETTINGS_STATE,
         WIN_STATE
     }
 
     public State changeState(StateType newState) {
         switch (newState) {
-            case CONNECT_STATE:
-                return MathSockets.gameState;
             case CHOOSE_AVATAR_STATE:
-                return MathSockets.gameState;
-            case SELECT_PORT_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getChooseAvatarState();
             case MAIN_MENU_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getMainMenuState();
             case GAME_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getGameState();
             case WIN_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getWinState();
             case PAUSE_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getPauseState();
             case SETTINGS_STATE:
-                return MathSockets.gameState;
-            case HOW_TO_PLAY_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getSettingsState();
+            case HELP_STATE:
+                return MathSockets.getHelpState();
             case ABOUT_STATE:
-                return MathSockets.gameState;
+                return MathSockets.getAboutState();
             default:
                 throw new IllegalStateException("No new State has been selected");
         }
