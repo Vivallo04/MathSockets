@@ -85,7 +85,7 @@ public class ChallengeState extends State {
         //text.setSize(300, 40);
 
         /**
-         * Button functionality: Comparing the correct result to the one entered by the player
+         * DiceButton functionality: Comparing the correct result to the one entered by the player
          */
         button.addListener(new ClickListener(){
            @Override

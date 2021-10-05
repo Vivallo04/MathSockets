@@ -5,7 +5,9 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -30,6 +32,13 @@ public final class Utility {
 
     public static final Random random = new Random();
     public static SpriteManager spriteManager;
+
+    //Font
+    private static final FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/Minecraft.ttf"));
+    private static final FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+
+
+    public static BitmapFont smallFont = generator.generateFont(parameter);
 
     /**
      * Check to see whether te asset is loaded,
@@ -138,4 +147,8 @@ public final class Utility {
         return value;
     }
 
+    public static BitmapFont getSmallFont() {
+        Utility.smallFont.getData().setScale(3, 3);
+        return smallFont;
+    }
 }

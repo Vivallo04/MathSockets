@@ -67,7 +67,7 @@ public class GameState extends State {
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
-        playerHUD = new PlayerHUD(this, Gdx.graphics.getWidth() - 480, 0);
+        playerHUD = new PlayerHUD(game, Gdx.graphics.getWidth() - 480, 0);
     }
 
 

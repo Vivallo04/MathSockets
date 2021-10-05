@@ -85,6 +85,7 @@ public class Player extends Entity {
         this.currentPlayerPosVector = currentPlayerPosVector;
     }
 
+
     public void dispose() {
 
     }
