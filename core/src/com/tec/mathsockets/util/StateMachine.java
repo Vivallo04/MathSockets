@@ -23,32 +23,38 @@ public class StateMachine {
         this.game = game;
     }
 
-    public State getState(StateType state) {
-        return changeState(state);
-    }
-
-    public State changeState(StateType newState) {
+    public void changeState(StateType newState) {
         switch (newState) {
             case LOADING_STATE:
-                return MathSockets.getLoadingState();
+                game.setScreen(MathSockets.getLoadingState());
+                return;
             case CHOOSE_AVATAR_STATE:
-                return MathSockets.getChooseAvatarState();
+                game.setScreen(MathSockets.getChooseAvatarState());
+                return;
             case CHALLENGE_STATE:
-                return MathSockets.getChallengeState();
+                game.setScreen(MathSockets.getChallengeState());
+                return;
             case MAIN_MENU_STATE:
-                return MathSockets.getMainMenuState();
+                game.setScreen(MathSockets.getMainMenuState());
+                return;
             case GAME_STATE:
-                return MathSockets.getGameState();
+                game.setScreen(MathSockets.getGameState());
+                return;
             case WIN_STATE:
-                return MathSockets.getWinState();
+                game.setScreen(MathSockets.getWinState());
+                return;
             case PAUSE_STATE:
-                return MathSockets.getPauseState();
+                game.setScreen(MathSockets.getPauseState());
+                return;
             case SETTINGS_STATE:
-                return MathSockets.getSettingsState();
+                game.setScreen(MathSockets.getSettingsState());
+                return;
             case HELP_STATE:
-                return MathSockets.getHelpState();
+                game.setScreen(MathSockets.getHelpState());return;
+
             case ABOUT_STATE:
-                return MathSockets.getAboutState();
+                game.setScreen(MathSockets.getAboutState());
+                return;
             default:
                 throw new IllegalStateException("No new State has been selected");
         }

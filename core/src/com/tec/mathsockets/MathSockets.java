@@ -50,7 +50,7 @@ public class MathSockets extends Game {
 	private static HelpState helpState;
 	private static AboutState aboutState;
 
-	public StateMachine stateMachine;
+	public static StateMachine stateMachine;
 
 	public StateMachine.StateType currentState;
 
@@ -85,7 +85,7 @@ public class MathSockets extends Game {
 		Gdx.app.debug(TAG, "Current state: " + currentState);
 		Gdx.graphics.setCursor(Gdx.graphics.newCursor(pixmap, 0, 0));
 
-		setScreen(stateMachine.getState(GAME_STATE));
+		stateMachine.changeState(GAME_STATE);
 	}
 
 	/**
