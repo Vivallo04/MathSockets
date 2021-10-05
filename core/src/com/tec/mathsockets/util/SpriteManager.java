@@ -133,6 +133,11 @@ public class SpriteManager {
         return spritesPathMap.get(characterType.toString() + state.toString());
     }
 
+    public void dispose() {
+        walkSheet.dispose();
+        idleSheet.dispose();
+    }
+
     public Animation<TextureRegion> getIdleAnimation() {
         return idleAnimation;
     }

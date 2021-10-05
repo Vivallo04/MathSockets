@@ -58,12 +58,9 @@ public class GServer {
     private void init() throws IOException {
         getServerInstance();
         getServerInstance().start();
-
+        getServerInstance().bind(54555, 54777);
         Gdx.app.debug(TAG, "The server has been started correctly");
 
-        serverResponse = " ";
-
-        getServerInstance().bind(54555, 54777);
 
         getServerInstance().addListener(new Listener() {
             public void received (Connection connection, Object object) {
@@ -71,8 +68,6 @@ public class GServer {
                     someRequest request = (someRequest)object; // Listen to client responses
                     System.out.println(request.write());
 
-                    someResponse response = new someResponse();
-                    connection.sendTCP(response.write());
                 }
             }
         });
@@ -105,24 +100,6 @@ public class GServer {
 
         }
     }
-
-    /**
-     * Receive a json file with the client message
-     */
-    public static class someResponse{
-        public String write() {
-            Json json = new Json();
-            String received;
-            received = "Hello2";
-            String serverString = json.toJson(received);
-            return serverString;
-        }
-
-        public void read() {
-
-        }
-    }
-
 
 }
 

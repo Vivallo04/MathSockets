@@ -75,5 +75,6 @@ project(":core") {
         implementation 'com.badlogicgames.gdx:gdx-tools:1.10.0'
         compile "com.esotericsoftware:kryonet:2.22.0-RC1"
         compile group: 'com.esotericsoftware', name: 'kryo', version: '3.0.3'
+        compile 'io.socket:socket.io-client:2.0.1'
     }
 }

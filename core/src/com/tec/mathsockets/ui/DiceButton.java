@@ -1,7 +1,6 @@
 package com.tec.mathsockets.ui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -104,11 +103,7 @@ public class DiceButton extends ClickListener implements EventManager.Listener {
         } else {
             game.getBatch().draw(buttonTexture, xPos, yPos - Utility.getSmallFont().getLineHeight(), width, height);
         }
-
-
         Utility.getSmallFont().draw(game.getBatch(), buttonLabel, xPos + 25, yPos);
-
-
     }
 
 

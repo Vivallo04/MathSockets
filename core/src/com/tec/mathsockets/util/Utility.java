@@ -38,7 +38,7 @@ public final class Utility {
     private static final FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
 
 
-    public static BitmapFont smallFont = generator.generateFont(parameter);
+    private static final BitmapFont smallFont = generator.generateFont(parameter);
 
 
 

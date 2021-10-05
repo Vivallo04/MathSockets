@@ -21,11 +21,17 @@ public class Dice extends ClickListener {
 
     private static final int FRAME_COLS = 4;
     private static final int FRAME_ROWS = 1;
-    private final Texture diceTextureSheet;
+
     private final int[] diceNumbers;
 
     private Animation<TextureRegion> diceAnimation;
     private boolean isRolling = false;
+
+    private final Texture diceTextureSheet;
+    private TextureRegion[][] temp;
+
+    private TextureRegion currentFrame;
+    TextureRegion[] rollingDiceFrames;
 
     private final PlayerHUD playerHUD;
     public float stateTime;
@@ -46,18 +52,16 @@ public class Dice extends ClickListener {
     }
 
     public void init() {
-        TextureRegion[][] temp = TextureRegion.split(diceTextureSheet,
-                                     diceTextureSheet.getWidth() / FRAME_COLS,
-                                    diceTextureSheet.getHeight()/FRAME_ROWS);
+        temp = TextureRegion.split(diceTextureSheet, diceTextureSheet.getWidth() / FRAME_COLS,
+                                                    diceTextureSheet.getHeight()/FRAME_ROWS);
 
-        TextureRegion[]  rollingDiceFrames = new TextureRegion[FRAME_ROWS * FRAME_COLS];
+        rollingDiceFrames = new TextureRegion[FRAME_ROWS * FRAME_COLS];
         int index = 0;
         for (int i = 0; i < FRAME_ROWS; i++) {
             for (int j = 0; j < FRAME_COLS; j++) {
                 rollingDiceFrames[index++] = temp[i][j];
             }
         }
-
         diceAnimation = new Animation<TextureRegion>(0.025f, rollingDiceFrames);
         stateTime = 0f;
     }
@@ -70,9 +74,8 @@ public class Dice extends ClickListener {
         } else {
             currentDiceState = DiceState.STATIC;
             isRolling = false;
-            System.out.println(getRandomNUmber());
+            int newNum = getRandomNUmber();
         }
-
     }
 
     public int getRandomNUmber() {
@@ -81,13 +84,7 @@ public class Dice extends ClickListener {
 
     public void render() {
         stateTime += Gdx.graphics.getDeltaTime();
-        TextureRegion currentFrame = diceAnimation.getKeyFrame(stateTime, isRolling);
-
-        if (currentDiceState.equals(DiceState.ROLLING)) {
-            isRolling = true;
-        } else {
-            isRolling = false;
-        }
+        currentFrame = diceAnimation.getKeyFrame(stateTime, isRolling);
 
         playerHUD.getGameBatch().draw(currentFrame, playerHUD.getxPos() + (playerHUD.getWIDTH() / 2 - 30) , Gdx.graphics.getHeight() / 4,
                                                                                 DICE_WIDTH, DICE_HEIGHT);

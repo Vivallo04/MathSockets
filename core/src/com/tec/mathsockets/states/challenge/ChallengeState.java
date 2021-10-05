@@ -51,13 +51,11 @@ public class ChallengeState extends State {
     @Override
     public void render(float delta) {
         super.render(delta);
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         int offset = 60;
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.rect(offset / 2, offset / 2, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
+        shapeRenderer.rect(offset / 2f, offset / 2f, (Gdx.graphics.getWidth() - offset), (Gdx.graphics.getHeight() - offset));
         shapeRenderer.end();
 
         batch.begin();

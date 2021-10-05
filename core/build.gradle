@@ -2,6 +2,8 @@ sourceCompatibility = 1.7
 dependencies {
     implementation 'com.badlogicgames.gdx:gdx-tools:1.10.0'
     implementation 'org.jetbrains:annotations-java5:20.1.0'
+    implementation 'com.codeminders.socketio:socketio-server-core:1.0.2'
+    implementation 'io.socket:socket.io-client:2.0.1'
 
     // implementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
 }

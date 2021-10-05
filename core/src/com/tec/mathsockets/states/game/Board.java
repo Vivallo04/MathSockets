@@ -27,7 +27,6 @@ public class Board {
     private int totalTiles;
 
     private ShapeRenderer shapeRenderer;
-    private Player player;
 
 
     float timeSeconds = 0f;
@@ -40,7 +39,6 @@ public class Board {
     public Board(BoardSize boardSize) {
         boardTileNodes = new LinkedList<Tile>();
         shapeRenderer = new ShapeRenderer();
-        player = new Player(this);
         if (boardSize.equals(BoardSize.SMALL)) {
             totalTiles = 16;
         } else if (boardSize.equals(BoardSize.MEDIUM)) {
@@ -94,7 +92,7 @@ public class Board {
         timeSeconds += Gdx.graphics.getDeltaTime();
 
         renderGraphics(batch);
-        player.render(batch);
+        //player.render();
     }
 
     /**
@@ -153,7 +151,7 @@ public class Board {
     /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
         boardTileNodes.removeAll(boardTileNodes);
-        player.dispose();
+        //player.dispose();
     }
 
 

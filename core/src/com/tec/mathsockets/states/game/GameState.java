@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.entity.Entity;
 import com.tec.mathsockets.entity.Player;
+import com.tec.mathsockets.network.GameServer;
 import com.tec.mathsockets.states.State;
 import com.tec.mathsockets.ui.PlayerHUD;
 import com.tec.mathsockets.util.StateMachine;
@@ -19,6 +20,7 @@ import com.tec.mathsockets.util.Utility;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class GameState extends State {
@@ -33,6 +35,7 @@ public class GameState extends State {
     private static final String TAG = GameState.class.getSimpleName();
 
     private final MathSockets game;
+    private static GameServer gameServer;
 
     private static class VIEWPORT {
         static float viewportWidth;
@@ -56,20 +59,28 @@ public class GameState extends State {
     private final Texture background;
     private int backgroundX = 0;
 
+    private Player player;
 
     /**
      * Load textures and initialize the game Board
      * @author Andrés Vivallo
      */
-    public GameState(final MathSockets game) {
+    public GameState(MathSockets game) {
         this.game = game;
-        loadBackgroundSprites();
-        Utility.loadTextureAsset(defaultBackgroundPath);
+
+        init();
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
+        player = new Player(board);
+        gameServer = new GameServer(player);
+
         playerHUD = new PlayerHUD(game, Gdx.graphics.getWidth() - 480, 0);
     }
 
+    public void init() {
+        loadBackgroundSprites();
+        Utility.loadTextureAsset(defaultBackgroundPath);
+    }
 
     /**
      * Called when this screen becomes the current screen for a {@link Game}.
@@ -96,8 +107,16 @@ public class GameState extends State {
         game.getBatch().begin();
         renderParallaxBackground();
         board.render(game.getBatch());
+        player.render(game.getBatch());
+        renderConnectedPlayers();
         playerHUD.render();
         game.getBatch().end();
+    }
+
+    public void renderConnectedPlayers() {
+        for (HashMap.Entry<String, Player> entry : game.connectedPLayers.entrySet()) {
+            entry.getValue().draw(game.getBatch());
+        }
     }
 
     // ---------------------------------- PARALLAX BACKGROUND -----------------------------

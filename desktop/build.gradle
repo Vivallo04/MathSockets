@@ -35,6 +35,8 @@ task dist(type: Jar) {
 
 dependencies {
     implementation 'com.badlogicgames.gdx:gdx-tools:1.10.0'
+    implementation 'com.codeminders.socketio:socketio-server-core:1.0.2'
+    implementation 'io.socket:socket.io-client:2.0.1'
 }
 
 

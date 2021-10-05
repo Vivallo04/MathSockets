@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.game.Board;
 import com.tec.mathsockets.util.SpriteManager;
 
@@ -24,8 +25,8 @@ public class Player extends Entity {
     private SpriteManager spriteManager;
     private Board board;
 
+    private Vector2 previousPlayerPosVector;
     private Vector2 currentPlayerPosVector;
-    private Vector2 previousPlayerVector;
     private Vector2 nextPlayerVector;
 
     private int playerPosIndex;
@@ -52,6 +53,15 @@ public class Player extends Entity {
 
         currentPlayerFrame = spriteManager.getWalkAnimation().getKeyFrame(spriteManager.getStateTime(), true);
         batch.draw(currentPlayerFrame, currentPlayerPosVector.x - offsetX, currentPlayerPosVector.y - offsetY, PLAYER_WIDTH, PLAYER_HEIGHT);
+    }
+
+    public boolean hasMoved() {
+        if (previousPlayerPosVector.x != getX() || previousPlayerPosVector.y != getY()) {
+            previousPlayerPosVector.x = getX();
+            previousPlayerPosVector.y = getY();
+            return true;
+        }
+        return false;
     }
 
     public void goToNextTile() {
@@ -87,7 +97,7 @@ public class Player extends Entity {
 
 
     public void dispose() {
-
+        spriteManager.dispose();
     }
 
 

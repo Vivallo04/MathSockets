@@ -6,8 +6,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.kryo.Kryo;
+import com.tec.mathsockets.entity.Player;
 import com.tec.mathsockets.network.GClient;
 import com.tec.mathsockets.network.GServer;
+import com.tec.mathsockets.network.GameServer;
 import com.tec.mathsockets.states.ChooseAvatarState;
 import com.tec.mathsockets.states.State;
 import com.tec.mathsockets.states.challenge.ChallengeState;
@@ -20,18 +22,18 @@ import com.tec.mathsockets.states.menu.pause.PauseState;
 import com.tec.mathsockets.states.menu.settings.SettingsState;
 import com.tec.mathsockets.states.win.WinState;
 import com.tec.mathsockets.util.StateMachine;
+import io.socket.client.IO;
+import io.socket.client.Socket;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.HashMap;
 
 import static com.tec.mathsockets.util.StateMachine.StateType.*;
 
 
 public class MathSockets extends Game {
 
-	//TODO: OBSERVER => REQUEST
-	//      Mouse pointer sprite
-	//      STATE MACHINE
-	//      FACTORY METHOD
 	private final String TAG = MathSockets.class.getSimpleName();
 	private SpriteBatch batch;
 
@@ -52,27 +54,21 @@ public class MathSockets extends Game {
 
 	public StateMachine.StateType currentState;
 
-	protected Kryo kryo;
-	protected GServer gameServer;
-	protected GClient gameClient;
+	public static HashMap<String, Player> connectedPLayers;
 
 
-	/**
-	 * Initialize Kryo Server and stay open
-	 * for request and responses
-	 */
+
 	public MathSockets() {
-		kryo = GServer.getServerInstance().getKryo();
-		kryo.register(GServer.someRequest.class);
-		kryo.register(GServer.someResponse.class);
 		currentState = StateMachine.StateType.GAME_STATE;
 	}
 
 
 	@Override
 	public void create() {
-
 		batch = new SpriteBatch();
+		connectedPLayers = new HashMap<>();
+
+		// game states
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		mainMenuState = new MainMenuState(this);
@@ -83,17 +79,7 @@ public class MathSockets extends Game {
 		Gdx.app.debug(TAG, "Current state: " + currentState);
 		Gdx.graphics.setCursor(Gdx.graphics.newCursor(pixmap, 0, 0));
 
-		setScreen(stateMachine.getState(MAIN_MENU_STATE));
-
-
-		try {
-			gameServer = GServer.getGServerInstance();
-			gameClient = new GClient();
-
-		} catch (IOException e) {
-			Gdx.app.debug(TAG, "Unable to initialize client and/or server " + e);
-			e.printStackTrace();
-		}
+		setScreen(stateMachine.getState(GAME_STATE));
 	}
 
 	/**
@@ -103,7 +89,6 @@ public class MathSockets extends Game {
 	public SpriteBatch getBatch() {
 		return this.batch;
 	}
-
 
 	public static GameState getGameState() {
 		return gameState;
@@ -150,8 +135,6 @@ public class MathSockets extends Game {
 	 */
 	@Override
 	public void dispose () {
-		gameClient.dispose();
-		gameServer.dispose();
 		pixmap.dispose();
 		loadingState.dispose();
 	}
