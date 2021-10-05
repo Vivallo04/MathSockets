@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.tools.flame.EventManager;
 import com.tec.mathsockets.MathSockets;
+import com.tec.mathsockets.states.game.GameState;
 import com.tec.mathsockets.util.Utility;
 
 
@@ -16,7 +17,10 @@ public class DiceButton extends ClickListener implements EventManager.Listener {
 
     private final String buttonOverTexturePath = "ui/buttonOver.png";
     private final String buttonTexturePath = "ui/button.png";
+
     private final MathSockets game;
+    private final GameState gameState;
+
 
     private Texture buttonTexture;
     private Texture buttonOverTexture;
@@ -29,8 +33,9 @@ public class DiceButton extends ClickListener implements EventManager.Listener {
 
 
 
-    public DiceButton(MathSockets game, String buttonLabel, int xPos, int yPos, int width, int height) {
+    public DiceButton(MathSockets game, GameState gameState, String buttonLabel, int xPos, int yPos, int width, int height) {
         this.game = game;
+        this.gameState = gameState;
         this.buttonLabel = buttonLabel;
         this.xPos = xPos;
         this.yPos = yPos;
@@ -66,7 +71,8 @@ public class DiceButton extends ClickListener implements EventManager.Listener {
            @Override
            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                if (Utility.inRange(Gdx.input.getX(), xPos, xPos + width) && Utility.inRange(Gdx.input.getY(), 590, 590 + height)) {
-                   PlayerHUD.getDiceInstance().rollDice();
+                   gameState.player.setPlayerPosIndex(PlayerHUD.getDiceInstance().rollDice());
+
                }
                return false;
            }

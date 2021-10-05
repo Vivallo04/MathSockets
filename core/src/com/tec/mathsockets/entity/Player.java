@@ -103,6 +103,14 @@ public class Player extends Entity {
         this.currentPlayerPosVector = currentPlayerPosVector;
     }
 
+    public void setPlayerPosIndex(int pos) {
+        if (playerPosIndex + pos >= 24) {
+            playerPosIndex = 24;
+        } else {
+            playerPosIndex += pos;
+        }
+
+    }
 
     public void dispose() {
         spriteManager.dispose();

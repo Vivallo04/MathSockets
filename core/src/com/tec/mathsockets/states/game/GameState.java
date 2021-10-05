@@ -59,7 +59,7 @@ public class GameState extends State {
     private final Texture background;
     private int backgroundX = 0;
 
-    private Player player;
+    public Player player;
 
     /**
      * Load textures and initialize the game Board
@@ -74,7 +74,7 @@ public class GameState extends State {
         player = new Player(board);
         gameServer = new GameServer(game, player);
 
-        playerHUD = new PlayerHUD(game, Gdx.graphics.getWidth() - 480, 0);
+        playerHUD = new PlayerHUD(game, this,Gdx.graphics.getWidth() - 480, 0);
     }
 
     public void init() {

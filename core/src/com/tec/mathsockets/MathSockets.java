@@ -85,7 +85,7 @@ public class MathSockets extends Game {
 		Gdx.app.debug(TAG, "Current state: " + currentState);
 		Gdx.graphics.setCursor(Gdx.graphics.newCursor(pixmap, 0, 0));
 
-		setScreen(stateMachine.getState(MAIN_MENU_STATE));
+		setScreen(stateMachine.getState(GAME_STATE));
 	}
 
 	/**

@@ -67,17 +67,19 @@ public class Dice extends ClickListener {
     }
 
 
-    public void rollDice() {
+    public int rollDice() {
+        int newNum = 0;
         if (currentDiceState == DiceState.STATIC) {
             currentDiceState = DiceState.ROLLING;
             isRolling = true;
         } else {
             currentDiceState = DiceState.STATIC;
             isRolling = false;
-            int newNum = getRandomNUmber();
+            newNum = getRandomNUmber();
 
             System.out.println(newNum);
         }
+        return newNum;
     }
 
     public int getRandomNUmber() {

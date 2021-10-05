@@ -6,12 +6,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.game.Dice;
+import com.tec.mathsockets.states.game.GameState;
 import com.tec.mathsockets.util.Utility;
 
 public class PlayerHUD  {
 
     public final String TAG = PlayerHUD.class.getSimpleName();
     private final MathSockets game;
+    private final GameState gameState;
 
     private final String logoTexturePath = "design/logo.png";
     private final String dashboardTexturePath = "ui/dashboard.png";
@@ -31,8 +33,9 @@ public class PlayerHUD  {
     private Vector2 rollDicePositionVector;
     private final DiceButton rollDiceBUtton;
 
-    public PlayerHUD(MathSockets game, int xPos, int yPos) {
+    public PlayerHUD(MathSockets game, GameState gameState, int xPos, int yPos) {
         this.game = game;
+        this.gameState = gameState;
         this.xPos = xPos;
         this.yPos = yPos;
 
@@ -42,7 +45,7 @@ public class PlayerHUD  {
         Dice = new Dice(this);
 
         rollDicePositionVector = new Vector2((xPos - 55) + (WIDTH/2),Gdx.graphics.getHeight() - 600);
-        rollDiceBUtton = new DiceButton(game, "Roll", (int) rollDicePositionVector.x,
+        rollDiceBUtton = new DiceButton(game, gameState,"Roll", (int) rollDicePositionVector.x,
                 (int) rollDicePositionVector.y, 128, 64);
     }
 
