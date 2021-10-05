@@ -25,11 +25,6 @@ import java.util.Map;
 
 public class GameState extends State {
 
-    // TODO: PLAYER TRAVERSE GAME BOARD => Dice
-    //       CHANGE FIELD'S NAMES
-    //       PARSE JSON FILES
-    //       ADD PLAYER'S INFO
-
     private final String defaultBackgroundPath = "backgrounds/background1.png";
 
     private static final String TAG = GameState.class.getSimpleName();
@@ -51,7 +46,7 @@ public class GameState extends State {
     private OrthographicCamera camera = null;
 
     private static Board board;
-    private PlayerHUD playerHUD;
+    public PlayerHUD playerHUD;
 
 
     // Parallax background sprites

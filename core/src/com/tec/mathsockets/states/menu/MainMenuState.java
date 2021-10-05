@@ -91,7 +91,7 @@ public class MainMenuState extends State {
         Play_button.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-                game.currentState = StateMachine.StateType.GAME_STATE;
+                MathSockets.stateMachine.changeState(StateMachine.StateType.GAME_STATE);
                 System.out.println("Estado actual: " + game.currentState);
 
                 return false;
@@ -109,7 +109,7 @@ public class MainMenuState extends State {
         Help_button.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-                game.currentState = StateMachine.StateType.HELP_STATE;
+                MathSockets.stateMachine.changeState(StateMachine.StateType.HELP_STATE);
                 System.out.println("Estado actual: " + game.currentState);
 
                 return false;
@@ -127,7 +127,7 @@ public class MainMenuState extends State {
         Settings_button.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-                game.currentState = StateMachine.StateType.SETTINGS_STATE;
+                MathSockets.stateMachine.changeState(StateMachine.StateType.SETTINGS_STATE);
                 System.out.println("Estado actual: " + game.currentState);
 
                 return false;
@@ -145,7 +145,7 @@ public class MainMenuState extends State {
         About_button.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
-                game.currentState = StateMachine.StateType.ABOUT_STATE;
+                MathSockets.stateMachine.changeState(StateMachine.StateType.ABOUT_STATE);
                 System.out.println("Estado actual: " + game.currentState);
 
                 return false;

@@ -22,7 +22,7 @@ public class PlayerHUD  {
 
     private Texture dashboard;
     private Texture playerTag;
-    private static Dice Dice;
+    public Dice Dice;
 
     private int xPos;
     private int yPos;
@@ -31,7 +31,7 @@ public class PlayerHUD  {
     private final int HEIGHT = Gdx.graphics.getHeight();
 
     private Vector2 rollDicePositionVector;
-    private final DiceButton rollDiceBUtton;
+    public DiceButton rollDiceBUtton;
 
     public PlayerHUD(MathSockets game, GameState gameState, int xPos, int yPos) {
         this.game = game;
@@ -68,9 +68,6 @@ public class PlayerHUD  {
         return game.getBatch();
     }
 
-    public static Dice getDiceInstance() {
-        return Dice;
-    }
 
     public int getxPos() {
         return xPos;
