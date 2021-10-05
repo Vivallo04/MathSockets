@@ -6,4 +6,10 @@ public class TunnelTile extends Tile {
         super();
         init("tiles/TunnelTile.png", TileType.TUNNEL_TILE);
     }
+
+    @Override
+    public void action() {
+        super.action();
+        System.out.println("TUNNEL TILE");
+    }
 }

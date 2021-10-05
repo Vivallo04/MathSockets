@@ -50,7 +50,7 @@ public class MathSockets extends Game {
 	private static HelpState helpState;
 	private static AboutState aboutState;
 
-	public static final StateMachine stateMachine = new StateMachine();
+	public StateMachine stateMachine;
 
 	public StateMachine.StateType currentState;
 
@@ -68,12 +68,18 @@ public class MathSockets extends Game {
 		batch = new SpriteBatch();
 		connectedPLayers = new HashMap<>();
 
+		// initialize state machine
+		stateMachine = new StateMachine(this);
+
+		//font
+		pixmap = new Pixmap(Gdx.files.internal("ui/cursor.png"));
+
 		// game states
 		gameState = new GameState(this);
 		loadingState = new LoadingState(this);
 		mainMenuState = new MainMenuState(this);
 		challengeState = new ChallengeState(this);
-		pixmap = new Pixmap(Gdx.files.internal("ui/cursor.png"));
+		winState = new WinState(this);
 
 
 		Gdx.app.debug(TAG, "Current state: " + currentState);

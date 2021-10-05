@@ -130,6 +130,8 @@ public class GameServer {
 
     public void dispose() {
         socket.disconnect();
+        socket.connect().disconnect();
+        socket.connect().close();
         socket.close();
     }
 }

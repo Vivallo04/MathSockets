@@ -13,7 +13,7 @@ public class StartTile extends Tile {
 
     @Override
     public void action() {
-
+        System.out.println("ON START TILE");
     }
 
 }

@@ -18,6 +18,11 @@ public class StateMachine {
         WIN_STATE
     }
 
+    private final MathSockets game;
+    public StateMachine(MathSockets game) {
+        this.game = game;
+    }
+
     public State getState(StateType state) {
         return changeState(state);
     }

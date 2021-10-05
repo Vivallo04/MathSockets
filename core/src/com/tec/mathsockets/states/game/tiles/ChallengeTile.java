@@ -6,4 +6,9 @@ public class ChallengeTile extends Tile {
         init("tiles/ChallengeTile.png", TileType.CHALLENGE_TILE);
     }
 
+    @Override
+    public void action() {
+        super.action();
+        System.out.println("ON CHALLENGE TILE");
+    }
 }

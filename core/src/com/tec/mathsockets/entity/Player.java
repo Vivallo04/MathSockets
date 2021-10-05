@@ -42,6 +42,7 @@ public class Player extends Entity {
 
         //players starts at the 0th node of the board
         playerPosIndex = 0;
+        getEvents();
     }
 
     public void render(SpriteBatch batch) {
@@ -49,14 +50,6 @@ public class Player extends Entity {
         int offsetY = 50;
 
         timeSeconds += Gdx.graphics.getDeltaTime();
-
-        if (timeSeconds > period) {
-            System.out.println("period");
-            timeSeconds -= period;
-            goToNextTile();
-        }
-
-
         spriteManager.addStateTime(Gdx.graphics.getDeltaTime());
 
         // get the first node and set it as the player's position
@@ -69,9 +62,7 @@ public class Player extends Entity {
     }
 
     public void getEvents() {
-        if (onTurn) {
-
-        }
+        board.getBoardTileNodes().get(playerPosIndex).action();
     }
 
     public boolean hasMoved() {
@@ -89,10 +80,9 @@ public class Player extends Entity {
             board.boardTileNodes.getLast().action();
         } else {
             playerPosIndex++;
+            getEvents();
             currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode());
         }
-        Gdx.app.debug(TAG, "Current player [" + playerID + "] at node: " + playerPosIndex +
-                ". Total nodes: " + board.getBoardTileNodes().size());
     }
 
     public void goToPreviousTile() {
@@ -100,10 +90,9 @@ public class Player extends Entity {
             playerPosIndex = 0;
         } else {
             playerPosIndex--;
+            getEvents();
             currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode());
         }
-        Gdx.app.debug(TAG, "Current player [" + playerID + "] at node: " + playerPosIndex +
-                ". Total nodes: " + board.getBoardTileNodes().size());
     }
 
     public Vector2 getCurrentPlayerPosVector() {
