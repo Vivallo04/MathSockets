@@ -3,6 +3,7 @@ package com.tec.mathsockets;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.kryo.Kryo;
 import com.tec.mathsockets.network.GClient;
@@ -22,8 +23,6 @@ import com.tec.mathsockets.util.StateMachine;
 
 import java.io.IOException;
 
-import static com.tec.mathsockets.util.StateMachine.StateType.MAIN_MENU_STATE;
-
 
 public class MathSockets extends Game {
 
@@ -33,6 +32,8 @@ public class MathSockets extends Game {
 	//      FACTORY METHOD
 	private final String TAG = MathSockets.class.getSimpleName();
 	private SpriteBatch batch;
+
+	private Pixmap pixmap;
 
 	private static GameState gameState;
 	private static LoadingState loadingState;
@@ -62,7 +63,7 @@ public class MathSockets extends Game {
 		kryo = GServer.getServerInstance().getKryo();
 		kryo.register(GServer.someRequest.class);
 		kryo.register(GServer.someResponse.class);
-		currentState = StateMachine.StateType.LOADING_STATE;
+		currentState = StateMachine.StateType.GAME_STATE;
 	}
 
 
@@ -74,8 +75,13 @@ public class MathSockets extends Game {
 		loadingState = new LoadingState(this);
 		mainMenuState = new MainMenuState(this);
 		challengeState = new ChallengeState(this);
+		pixmap = new Pixmap(Gdx.files.internal("ui/cursor.png"));
+
+
 		Gdx.app.debug(TAG, "Current state: " + currentState);
-		setScreen(stateMachine.getState(MAIN_MENU_STATE));
+		Gdx.graphics.setCursor(Gdx.graphics.newCursor(pixmap, 0, 0));
+
+		setScreen(stateMachine.getState(currentState));
 
 
 		try {
@@ -144,6 +150,7 @@ public class MathSockets extends Game {
 	public void dispose () {
 		gameClient.dispose();
 		gameServer.dispose();
+		pixmap.dispose();
 		loadingState.dispose();
 	}
 
