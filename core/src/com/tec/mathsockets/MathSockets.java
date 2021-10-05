@@ -54,7 +54,7 @@ public class MathSockets extends Game {
 
 	public StateMachine.StateType currentState;
 
-	public static HashMap<String, Player> connectedPLayers;
+	public HashMap<String, Player> connectedPLayers;
 
 
 

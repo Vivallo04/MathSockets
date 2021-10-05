@@ -28,10 +28,6 @@ public class Board {
 
     private ShapeRenderer shapeRenderer;
 
-
-    float timeSeconds = 0f;
-    float period = 1f;
-
     /**
      * Generate the game board according the selected size
      * @param boardSize integer (small, medium, big)
@@ -49,9 +45,6 @@ public class Board {
         populateBoard();
     }
 
-    public LinkedList<Tile> getBoardTileNodes() {
-        return boardTileNodes;
-    }
 
 
     /**
@@ -84,15 +77,13 @@ public class Board {
         }
     }
 
+
     /**
      * Interface for rendering all the Board's components
      * @param batch GameState's sprite batch
      */
     public void render(SpriteBatch batch) {
-        timeSeconds += Gdx.graphics.getDeltaTime();
-
         renderGraphics(batch);
-        //player.render();
     }
 
     /**
@@ -132,6 +123,7 @@ public class Board {
         }
     }
 
+
     /**
      * Render center nodes for debugging purposes
      */
@@ -148,10 +140,18 @@ public class Board {
     }
 
 
+    /**
+     * Returns all the node of the game board
+     * @return Tile(s) in game Board
+     */
+    public LinkedList<Tile> getBoardTileNodes() {
+        return boardTileNodes;
+    }
+
+
     /** Remove all the nodes of the DoublyLinkedList */
     public void dispose() {
         boardTileNodes.removeAll(boardTileNodes);
-        //player.dispose();
     }
 
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.game.Board;
+import com.tec.mathsockets.states.game.Dice;
 import com.tec.mathsockets.util.SpriteManager;
 
 import java.util.UUID;
@@ -32,6 +33,8 @@ public class Player extends Entity {
     private int playerPosIndex;
     private boolean onTurn;
 
+    float timeSeconds = 0f;
+    float period = 2f;
 
     public Player(Board board) {
         this.board = board;
@@ -45,14 +48,30 @@ public class Player extends Entity {
         int offsetX = 65;
         int offsetY = 50;
 
+        timeSeconds += Gdx.graphics.getDeltaTime();
+
+        if (timeSeconds > period) {
+            System.out.println("period");
+            timeSeconds -= period;
+            goToNextTile();
+        }
+
+
         spriteManager.addStateTime(Gdx.graphics.getDeltaTime());
 
         // get the first node and set it as the player's position
         currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode().x,
                 board.boardTileNodes.get(playerPosIndex).getCenterNode().y);;
 
+
         currentPlayerFrame = spriteManager.getWalkAnimation().getKeyFrame(spriteManager.getStateTime(), true);
         batch.draw(currentPlayerFrame, currentPlayerPosVector.x - offsetX, currentPlayerPosVector.y - offsetY, PLAYER_WIDTH, PLAYER_HEIGHT);
+    }
+
+    public void getEvents() {
+        if (onTurn) {
+
+        }
     }
 
     public boolean hasMoved() {
@@ -98,6 +117,7 @@ public class Player extends Entity {
 
     public void dispose() {
         spriteManager.dispose();
+
     }
 
 

@@ -75,6 +75,8 @@ public class Dice extends ClickListener {
             currentDiceState = DiceState.STATIC;
             isRolling = false;
             int newNum = getRandomNUmber();
+
+            System.out.println(newNum);
         }
     }
 

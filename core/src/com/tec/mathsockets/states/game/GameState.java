@@ -72,7 +72,7 @@ public class GameState extends State {
         background = Utility.getTextureAsset(defaultBackgroundPath);
         board = new Board(Board.BoardSize.MEDIUM);
         player = new Player(board);
-        gameServer = new GameServer(player);
+        gameServer = new GameServer(game, player);
 
         playerHUD = new PlayerHUD(game, Gdx.graphics.getWidth() - 480, 0);
     }
@@ -107,7 +107,8 @@ public class GameState extends State {
         game.getBatch().begin();
         renderParallaxBackground();
         board.render(game.getBatch());
-        player.render(game.getBatch());
+
+
         renderConnectedPlayers();
         playerHUD.render();
         game.getBatch().end();
@@ -115,7 +116,7 @@ public class GameState extends State {
 
     public void renderConnectedPlayers() {
         for (HashMap.Entry<String, Player> entry : game.connectedPLayers.entrySet()) {
-            entry.getValue().draw(game.getBatch());
+            entry.getValue().render(game.getBatch());
         }
     }
 
@@ -194,6 +195,7 @@ public class GameState extends State {
     @Override
     public void dispose() {
         Utility.unloadAsset(defaultBackgroundPath);
+        gameServer.dispose();
         board.dispose();
     }
 
