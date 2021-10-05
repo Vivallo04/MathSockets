@@ -86,7 +86,8 @@ public class Challenge {
         if (getRandomOperation().equals(Operation.ADDITION)) {
             problem = num1 + " + " + num2;
             result = num1 + num2;
-            Gdx.app.debug(TAG, " Suma resultado: " + result);
+            System.out.println(getProblem());
+            //Gdx.app.debug(TAG, " Suma resultado: " + result);
             userInput = playerResult.nextInt();
 
             if (userInput == result) {
@@ -96,7 +97,8 @@ public class Challenge {
         } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
             problem = num1 + " - " + num2;
             result = num1 - num2;
-            Gdx.app.debug(TAG, "Resta resultado: " + result);
+            System.out.println(getProblem());
+            //Gdx.app.debug(TAG, "Resta resultado: " + result);
 
             userInput = playerResult.nextInt();
             if (userInput == result) {
@@ -105,18 +107,20 @@ public class Challenge {
 
         } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
             problem = num1 + " * " + num2;
+            System.out.println(getProblem());
             result = num1 * num2;
-            Gdx.app.debug(TAG, " Multiplicación resultado: " + result);
+            //Gdx.app.debug(TAG, " Multiplicación resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
                 return;
             }
 
         } else {
-            problem = num1 + " / " + num2;
             setNum1(num1);
+            problem = num1 + " / " + num2;
+            System.out.println(getProblem());
             result = num1 / num2;
-            Gdx.app.debug(TAG, " División resultado: " + result);
+            //Gdx.app.debug(TAG, " División resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
                 return;
@@ -139,6 +143,5 @@ public class Challenge {
     public static int getResult() {
         return result;
     }
-
 
 }
