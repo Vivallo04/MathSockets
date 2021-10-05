@@ -77,7 +77,7 @@ public class MainMenuState extends State {
 
         game.getBatch().begin();
 
-        renderParallaxBackground();
+        //renderParallaxBackground();
 
         Utility.getSmallFont().draw(game.getBatch(), "WELLCOME TO MENU", 480, 600);
 

@@ -61,7 +61,6 @@ public class LoadingState extends State {
             if (alpha >= 1) {
                 alpha = 1f;
             }
-
         }
     }
 
