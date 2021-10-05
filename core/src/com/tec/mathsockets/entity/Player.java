@@ -36,7 +36,7 @@ public class Player extends Entity {
         this.board = board;
         this.spriteManager = new SpriteManager(SpriteManager.CharacterType.ROBO_RETRO);
 
-        //players starts ath the 0th node of the board
+        //players starts at the 0th node of the board
         playerPosIndex = 0;
     }
 
@@ -59,22 +59,19 @@ public class Player extends Entity {
             playerPosIndex = playerPosIndex;
             board.boardTileNodes.getLast().action();
         } else {
-            int newPlayerPos = playerPosIndex + 1;
-            playerPosIndex = newPlayerPos;
-            // previousPlayerVector = new Vector2(currentPlayerPosVector);
-            currentPlayerPosVector = new Vector2(board.boardTileNodes.get(newPlayerPos).getCenterNode());
+            playerPosIndex++;
+            currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode());
         }
         Gdx.app.debug(TAG, "Current player [" + playerID + "] at node: " + playerPosIndex +
                 ". Total nodes: " + board.getBoardTileNodes().size());
     }
 
     public void goToPreviousTile() {
-        if (playerPosIndex == 1) {
-            playerPosIndex = 1;
+        if (playerPosIndex == 0) {
+            playerPosIndex = 0;
         } else {
-            int newPlayerPos = playerPosIndex - 1;
-            previousPlayerVector = currentPlayerPosVector;
-            currentPlayerPosVector = board.getBoardTileNodes().get(newPlayerPos).getCenterNode();
+            playerPosIndex--;
+            currentPlayerPosVector = new Vector2(board.boardTileNodes.get(playerPosIndex).getCenterNode());
         }
         Gdx.app.debug(TAG, "Current player [" + playerID + "] at node: " + playerPosIndex +
                 ". Total nodes: " + board.getBoardTileNodes().size());

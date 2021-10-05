@@ -31,7 +31,7 @@ public class Board {
 
 
     float timeSeconds = 0f;
-    float period = 0.5f;
+    float period = 1f;
 
     /**
      * Generate the game board according the selected size
@@ -92,11 +92,7 @@ public class Board {
      */
     public void render(SpriteBatch batch) {
         timeSeconds += Gdx.graphics.getDeltaTime();
-        if (timeSeconds > period) {
-            timeSeconds -= period;
-            System.out.println("Cambio");
-            player.goToNextTile();
-        }
+
         renderGraphics(batch);
         player.render(batch);
     }
