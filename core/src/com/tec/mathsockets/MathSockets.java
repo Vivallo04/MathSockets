@@ -23,8 +23,7 @@ import com.tec.mathsockets.util.StateMachine;
 
 import java.io.IOException;
 
-import static com.tec.mathsockets.util.StateMachine.StateType.GAME_STATE;
-import static com.tec.mathsockets.util.StateMachine.StateType.MAIN_MENU_STATE;
+import static com.tec.mathsockets.util.StateMachine.StateType.*;
 
 
 public class MathSockets extends Game {
@@ -84,7 +83,7 @@ public class MathSockets extends Game {
 		Gdx.app.debug(TAG, "Current state: " + currentState);
 		Gdx.graphics.setCursor(Gdx.graphics.newCursor(pixmap, 0, 0));
 
-		setScreen(stateMachine.getState(GAME_STATE));
+		setScreen(stateMachine.getState(MAIN_MENU_STATE));
 
 
 		try {

@@ -40,6 +40,8 @@ public final class Utility {
 
     public static BitmapFont smallFont = generator.generateFont(parameter);
 
+
+
     /**
      * Check to see whether te asset is loaded,
      * and if it is, then unload the asset from memory.

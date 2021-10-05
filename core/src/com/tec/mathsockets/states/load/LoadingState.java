@@ -56,6 +56,7 @@ public class LoadingState extends State {
 
             if (timeSeconds >= 3f) {
                 game.currentState = StateMachine.StateType.GAME_STATE;
+                System.out.println("cambio de estado");
             }
             if (alpha >= 1) {
                 alpha = 1f;

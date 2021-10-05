@@ -1,6 +1,7 @@
 package com.tec.mathsockets.states.menu;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -14,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.tec.mathsockets.MathSockets;
 import com.tec.mathsockets.states.State;
+import com.tec.mathsockets.ui.DiceButton;
 import com.tec.mathsockets.util.StateMachine;
 import com.tec.mathsockets.util.Utility;
 
@@ -23,7 +25,6 @@ public class MainMenuState extends State {
 
     private MathSockets game;
     private Skin skin;
-    private Stage stage;
     private TextureAtlas textureAtlas;
 
     private final OrthogonalTiledMapRenderer mapRenderer = null;
@@ -44,8 +45,22 @@ public class MainMenuState extends State {
         Utility.loadTextureAsset(defaultBackgroundPath);
         background = Utility.getTextureAsset(defaultBackgroundPath);
 
+        init();
+
 
      }
+
+    private void init() {
+        Table table = new Table();
+        table.setPosition(0,0);
+
+        table.setFillParent(true);
+        table.setHeight(500);
+        table.setHeight(500);
+        table.top();
+        super.addActor(table);
+
+    }
 
     @Override
     public void show() {
@@ -56,26 +71,18 @@ public class MainMenuState extends State {
     @Override
     public void render(float delta) {
         super.render(delta);
+
+        //Gdx.gl.glClearColor(0,0,0,0);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
         game.getBatch().begin();
 
-        //renderParallaxBackground();
+        renderParallaxBackground();
 
-        Table table = new Table();
-        table.setPosition(0,0);
+        Utility.getSmallFont().draw(game.getBatch(), "WELLCOME TO MENU", 480, 600);
 
-        table.setFillParent(true);
-        table.setHeight(500);
-        table.setHeight(500);
-        super.addActor(table);
+        // Botón para ir al juego
 
-        Label Welcome_message = new Label("WELCOM TO MENU", getSkin());
-        Welcome_message.setPosition(620, 600);
-        Welcome_message.setWidth(200);
-        Welcome_message.setHeight(40);
-
-        table.addActor(Welcome_message);
-
-        // Botón para ir el juego
         TextButton Play_button = new TextButton("Jugar", getSkin());
         Play_button.setPosition(600, 500);
         Play_button.setWidth(200);
@@ -91,7 +98,7 @@ public class MainMenuState extends State {
             }
         });
 
-        table.addActor(Play_button);
+        super.addActor(Play_button);
 
         // Botón para ingresar a la sección de ayuda
         TextButton Help_button = new TextButton("Ayuda", getSkin());
@@ -109,7 +116,7 @@ public class MainMenuState extends State {
             }
         });
 
-        table.addActor(Help_button);
+        super.addActor(Help_button);
 
         // Botón para ingresar a los ajustes
         TextButton Settings_button = new TextButton("Ajustes", getSkin());
@@ -127,7 +134,7 @@ public class MainMenuState extends State {
             }
         });
 
-        table.addActor(Settings_button);
+        super.addActor(Settings_button);
 
         // Botón para ingresar al about
         TextButton About_button = new TextButton("About", getSkin());
@@ -145,7 +152,7 @@ public class MainMenuState extends State {
             }
         });
 
-        table.addActor(About_button);
+        super.addActor(About_button);
 
         game.getBatch().end();
 
