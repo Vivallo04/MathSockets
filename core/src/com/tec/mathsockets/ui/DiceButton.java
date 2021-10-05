@@ -72,7 +72,7 @@ public class DiceButton extends ClickListener implements EventManager.Listener {
            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                if (Utility.inRange(Gdx.input.getX(), xPos, xPos + width) && Utility.inRange(Gdx.input.getY(), 590, 590 + height)) {
                    gameState.player.setPlayerPosIndex(PlayerHUD.getDiceInstance().rollDice());
-
+                   gameState.player.getEvents();
                }
                return false;
            }
