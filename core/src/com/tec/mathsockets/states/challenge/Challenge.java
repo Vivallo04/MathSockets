@@ -1,5 +1,7 @@
 package com.tec.mathsockets.states.challenge;
 
+import com.badlogic.gdx.Gdx;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -84,7 +86,7 @@ public class Challenge {
         if (getRandomOperation().equals(Operation.ADDITION)) {
             problem = num1 + " + " + num2;
             result = num1 + num2;
-            System.out.println(TAG + " Suma resultado: " + result);
+            Gdx.app.debug(TAG, " Suma resultado: " + result);
             userInput = playerResult.nextInt();
 
             if (userInput == result) {
@@ -94,7 +96,8 @@ public class Challenge {
         } else if (getRandomOperation().equals(Operation.SUBTRACTION)) {
             problem = num1 + " - " + num2;
             result = num1 - num2;
-            System.out.println(TAG + " resta resultado: " + result);
+            Gdx.app.debug(TAG, "Resta resultado: " + result);
+
             userInput = playerResult.nextInt();
             if (userInput == result) {
                 return;
@@ -103,7 +106,7 @@ public class Challenge {
         } else if (getRandomOperation().equals(Operation.MULTIPLICATION)) {
             problem = num1 + " * " + num2;
             result = num1 * num2;
-            System.out.println(TAG + " multiplicación resultado: " + result);
+            Gdx.app.debug(TAG, " Multiplicación resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
                 return;
@@ -111,10 +114,9 @@ public class Challenge {
 
         } else {
             problem = num1 + " / " + num2;
-            System.out.println("La operación es división de: " + problem);
             setNum1(num1);
             result = num1 / num2;
-            System.out.println(TAG + " división resultado: " + result);
+            Gdx.app.debug(TAG, " División resultado: " + result);
             userInput = playerResult.nextInt();
             if (userInput == result) {
                 return;

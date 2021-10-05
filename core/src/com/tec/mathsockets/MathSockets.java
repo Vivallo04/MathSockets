@@ -22,6 +22,8 @@ import com.tec.mathsockets.util.StateMachine;
 
 import java.io.IOException;
 
+import static com.tec.mathsockets.util.StateMachine.StateType.MAIN_MENU_STATE;
+
 
 public class MathSockets extends Game {
 
@@ -73,7 +75,7 @@ public class MathSockets extends Game {
 		mainMenuState = new MainMenuState(this);
 		challengeState = new ChallengeState(this);
 		Gdx.app.debug(TAG, "Current state: " + currentState);
-		setScreen(stateMachine.getState(currentState));
+		setScreen(stateMachine.getState(MAIN_MENU_STATE));
 
 
 		try {
